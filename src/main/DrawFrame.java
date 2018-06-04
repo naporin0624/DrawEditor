@@ -21,11 +21,11 @@ public class DrawFrame extends JFrame implements ActionListener {
 
 		JMenuBar Menu = new JMenuBar();
 		setJMenuBar(Menu);
-		JMenu SMenu = new JMenu("File"), 
-			   CMenu = new JMenu("Color"), 
+		JMenu SMenu = new JMenu("File"),
+			   CMenu = new JMenu("Color"),
 			   FMenu = new JMenu("Figre"),
 			   Size = new JMenu("Sise");
-			   
+
 
 		Menu.add(SMenu);
 		Menu.add(CMenu);
@@ -35,7 +35,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 				   openm = new JMenuItem("Open"),
 				   savem = new JMenuItem("Save"),
 				   closem = new JMenuItem("Close");
-		
+
 		//メニューアイテムの追加
 		SMenu.add(newm);
 		SMenu.add(openm);
