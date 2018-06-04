@@ -21,28 +21,46 @@ public class DrawFrame extends JFrame implements ActionListener {
 
 		JMenuBar Menu = new JMenuBar();
 		setJMenuBar(Menu);
-		JMenu SMenu = new JMenu("File"), CMenu = new JMenu("Color"), FMenu = new JMenu("Figre"),Point = new JMenu("Point");
+		JMenu SMenu = new JMenu("File"), CMenu = new JMenu("Color"), FMenu = new JMenu("Figre"),
+				Size = new JMenu("Sise");
 
 		Menu.add(SMenu);
 		Menu.add(CMenu);
 		Menu.add(FMenu);
-		Menu.add(Point);
-		JMenuItem newm = new JMenuItem("New Edit");
-		JMenuItem openm = new JMenuItem("Open");
-		JMenuItem savem = new JMenuItem("Save");
-		JMenuItem closem = new JMenuItem("Close");
-		//メニューアイテムの追加
+		Menu.add(Size);
+		JMenuItem newm = new JMenuItem("New Edit"), openm = new JMenuItem("Open"), savem = new JMenuItem("Save"),
+				closem = new JMenuItem("Close");
+		JMenuItem redm = new JMenuItem("Red"), bluem = new JMenuItem("Blue"), greenm = new JMenuItem("Green"),
+				yellowm = new JMenuItem("Yellow"), otherm = new JMenuItem("other");
+		// メニューアイテムの追加
 		SMenu.add(newm);
 		SMenu.add(openm);
 		SMenu.add(savem);
 		SMenu.add(closem);
-		//イベントリスクの設定
+
+		CMenu.add(redm);
+		CMenu.add(bluem);
+		CMenu.add(greenm);
+		CMenu.add(yellowm);
+		CMenu.add(otherm);
+		redm.setBackground(Color.red);
+		bluem.setBackground(Color.blue);
+		greenm.setBackground(Color.green);
+		yellowm.setBackground(Color.yellow);
+
+		// イベントリスクの設定
 		newm.addActionListener(this);
 		openm.addActionListener(this);
 		savem.addActionListener(this);
 		closem.addActionListener(this);
 
-		//以下描画
+		redm.addActionListener(this);
+		bluem.addActionListener(this);
+		greenm.addActionListener(this);
+		yellowm.addActionListener(this);
+		otherm.addActionListener(this);
+
+		// 以下描画
 		this.setBackground(Color.black);
 		this.setTitle("Draw Editor");
 		this.setSize(500, 500);
@@ -64,5 +82,14 @@ public class DrawFrame extends JFrame implements ActionListener {
 			System.out.println("Save");
 		if (e.getActionCommand() == "Close")
 			System.exit(0);
+		if (e.getActionCommand() == "Red")
+			model.ChangeColor(Color.red);
+		if(e.getActionCommand() == "Blue")
+			model.ChangeColor(Color.blue);
+		if(e.getActionCommand()=="Green")
+			model.ChangeColor(Color.green);
+		if(e.getActionCommand()=="Yellow")
+			model.ChangeColor(Color.yellow);
+
 	}
 }
