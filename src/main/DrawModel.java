@@ -15,7 +15,6 @@ public class DrawModel extends Observable{
 	  }
 	  public void ChangeColor(Color c) {
 		  currentColor = c;
-		  System.out.println(currentColor);
 	  }
 	  public ArrayList<Figure> getFigures() {
 	    return fig;
@@ -24,7 +23,6 @@ public class DrawModel extends Observable{
 	    return fig.get(idx);
 	  }
 	  public void createFigure(int x,int y) {
-		System.out.println(currentColor);
 	    Figure f = new RectangleFigure(x,y,0,0,currentColor);
 	    fig.add(f);
 	    drawingFigure = f;
