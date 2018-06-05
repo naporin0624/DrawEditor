@@ -1,13 +1,18 @@
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 public class DrawFrame extends JFrame implements ActionListener {
 	DrawModel model;
@@ -15,13 +20,14 @@ public class DrawFrame extends JFrame implements ActionListener {
 	DrawController cont;
 	ColorPanel Cpanel;
 	Color c;
+	JButton True;
 
 	public DrawFrame() {
 		model = new DrawModel();
 		cont = new DrawController(model);
 		view = new ViewPanel(model, cont);
-		Cpanel =new ColorPanel();
-		
+		Cpanel = new ColorPanel();
+
 		JMenuBar Menu = new JMenuBar();
 		setJMenuBar(Menu);
 		JMenu SMenu = new JMenu("File"), CMenu = new JMenu("Color"), FMenu = new JMenu("Figre"),
@@ -38,7 +44,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 				yellowm = new JMenuItem("Yellow"), otherm = new JMenuItem("Paint Color other");
 		JMenuItem RB = new JMenuItem("Red Back"), BB = new JMenuItem("Blue Back"), GB = new JMenuItem("Green Back"),
 				YB = new JMenuItem("Yellow Back"), WB = new JMenuItem("White Back"),
-				BlackBack = new JMenuItem("Black Back"),otherB = new JMenuItem("BG Color other");
+				BlackBack = new JMenuItem("Black Back"), otherB = new JMenuItem("BG Color other");
 		// メニューアイテムの追加
 		SMenu.add(newm);
 		SMenu.add(openm);
@@ -70,6 +76,19 @@ public class DrawFrame extends JFrame implements ActionListener {
 		BlackBack.setBackground(Color.black);
 		BlackBack.setForeground(Color.white);
 
+		JPanel p1 = new JPanel();
+		True = new JButton("Just Size");
+		JLabel JustFigre = new JLabel("JustFigre"), HLabel = new JLabel("Hight : "), WLabel = new JLabel("Wight : ");
+
+		p1.setLayout(new GridLayout(1, 7));
+		p1.add(JustFigre);
+		JustFigre.setHorizontalAlignment(JLabel.CENTER);
+		p1.add(True);
+		p1.add(HLabel);
+		HLabel.setHorizontalAlignment(JLabel.CENTER);
+		p1.add(WLabel);
+		WLabel.setHorizontalAlignment(JLabel.CENTER);
+
 		// イベントリスクの設定
 		newm.addActionListener(this);
 		openm.addActionListener(this);
@@ -90,11 +109,13 @@ public class DrawFrame extends JFrame implements ActionListener {
 		BlackBack.addActionListener(this);
 		otherB.addActionListener(this);
 
+		True.addActionListener(this);
 
 		// 以下描画
 		this.setBackground(Color.black);
 		this.setTitle("Draw Editor");
 		this.setSize(500, 500);
+		this.add(p1, BorderLayout.NORTH);
 		this.add(view);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -124,29 +145,34 @@ public class DrawFrame extends JFrame implements ActionListener {
 			model.ChangeColor(Color.green);
 		else if (e.getActionCommand() == "Yellow")
 			model.ChangeColor(Color.yellow);
-		else if (e.getActionCommand() == "Paint Color other")
-		{
+		else if (e.getActionCommand() == "Paint Color other") {
 			c = Cpanel.ColorPanelwindow();
 			model.ChangeColor(c);
-		}	
+		}
 
 		//BGColoroの中身
-		else if (e.getActionCommand()=="Red Back")
+		else if (e.getActionCommand() == "Red Back")
 			view.BackPanelColor(Color.red);
-		else if(e.getActionCommand()=="Blue Back")
+		else if (e.getActionCommand() == "Blue Back")
 			view.BackPanelColor(Color.blue);
-		else if(e.getActionCommand()=="Green Back")
+		else if (e.getActionCommand() == "Green Back")
 			view.BackPanelColor(Color.green);
-		else if(e.getActionCommand()=="Yellow Back")
+		else if (e.getActionCommand() == "Yellow Back")
 			view.BackPanelColor(Color.yellow);
-		else if(e.getActionCommand()=="White Back")
+		else if (e.getActionCommand() == "White Back")
 			view.BackPanelColor(Color.white);
-		else if(e.getActionCommand()=="Black Back")
+		else if (e.getActionCommand() == "Black Back")
 			view.BackPanelColor(Color.black);
-		else if(e.getActionCommand()== "BG Color other")
-		{
+		else if (e.getActionCommand() == "BG Color other") {
 			c = Cpanel.ColorPanelwindow();
 			view.BackPanelColor(c);
+		}
+
+		else if (e.getActionCommand() == "Just Size") {
+			if (True.getBackground() != Color.red)
+				True.setBackground(Color.red);
+			else
+				True.setBackground(null);
 		}
 
 	}

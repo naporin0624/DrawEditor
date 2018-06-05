@@ -20,4 +20,10 @@ public class RectangleFigure extends Figure {
 		g.drawOval(x,y,width,height);
 		
 	}
+	
+	public void line(Graphics g) {
+		g.setColor(color);
+		g.drawLine(x,y,width,height);
+	}
+	
 }
