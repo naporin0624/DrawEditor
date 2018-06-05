@@ -1,26 +1,38 @@
 package main;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
-public class ColorPanel extends JFrame implements ActionListener{
-	DrawModel model; 
-	public ColorPanel() {
-		this.setSize(300, 200);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JButton b = new JButton("Red"),
-				b1 = new JButton("Blue"),
-				b2 = new JButton("Green"),
-				b3 = new JButton("Yellow"),
-				b4 = new JButton("White"),
-				b5 = new JButton("Black"),
-				b6 = new JButton("Add Color");
+public class ColorPanel extends JFrame implements ActionListener {
+	DrawModel model;
+	JButton b = new JButton("Red"), b1 = new JButton("Blue"), b2 = new JButton("Green"), b3 = new JButton("Yellow"),
+			b4 = new JButton("White"), b5 = new JButton("Black"), b6 = new JButton("Add");
+
+	public ColorPanel(DrawModel model) {
+		this.model = model;
+		this.setSize(300, 300);
+		this.setLayout(new GridLayout(3, 2));
+
+		b.setBackground(Color.red);
+		b1.setBackground(Color.blue);
+		b2.setBackground(Color.green);
+		b3.setBackground(Color.yellow);
+		b4.setBackground(Color.white);
+		b5.setBackground(Color.black);
+		b5.setForeground(Color.white);
+		
+		this.add(b);
+		this.add(b1);
+		this.add(b3);
+		this.add(b4);
+		this.add(b5);
+		this.add(b6);
+		
 		b.addActionListener(this);
 		b1.addActionListener(this);
 		b2.addActionListener(this);
@@ -32,12 +44,19 @@ public class ColorPanel extends JFrame implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()=="Red")model.ChangeColor(Color.red);
-		if(e.getSource()=="Blue")model.ChangeColor(Color.blue);
-		if(e.getSource()=="Green")model.ChangeColor(Color.green);
-		if(e.getSource()=="Yellow")model.ChangeColor(Color.yellow);
-		if(e.getSource()=="White")model.ChangeColor(Color.white);
-		if(e.getSource()=="Black")model.ChangeColor(Color.black);
-		if(e.getSource()=="Add Color")System.out.println("OKOK");
+		if (e.getSource() == b)
+			model.ChangeColor(Color.red);
+		else if (e.getSource() == b1)
+			model.ChangeColor(Color.blue);
+		else if (e.getSource() == b2)
+			model.ChangeColor(Color.green);
+		else if (e.getSource() == b3)
+			model.ChangeColor(Color.yellow);
+		else if (e.getSource() == b4)
+			model.ChangeColor(Color.white);
+		else if (e.getSource() == b5)
+			model.ChangeColor(Color.black);
+		else if (e.getSource() == b6)
+			System.out.println("OKOK");
 	}
 }

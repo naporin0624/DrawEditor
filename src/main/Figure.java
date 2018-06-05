@@ -33,7 +33,10 @@ public class Figure {
 		setLocation(newx, newy);
 		setSize(neww, newh);
 	}
-
+	public void Circle(int x1,int y1, int x2, int y2) {
+		
+	}
+	
 	public void draw(Graphics g) {
 	}
 }

@@ -22,7 +22,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 		JMenuBar Menu = new JMenuBar();
 		setJMenuBar(Menu);
 		JMenu SMenu = new JMenu("File"), CMenu = new JMenu("Color"), FMenu = new JMenu("Figre"),
-				Size = new JMenu("Sise");
+				Size = new JMenu("Size");
 
 		Menu.add(SMenu);
 		Menu.add(CMenu);
@@ -70,7 +70,6 @@ public class DrawFrame extends JFrame implements ActionListener {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
-
 	public static void main(String argv[]) {
 		new DrawFrame();
 	}
@@ -78,22 +77,22 @@ public class DrawFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "New Edit")
 			System.out.println("New Edit");
-		if (e.getActionCommand() == "Open")
+		else if (e.getActionCommand() == "Open")
 			System.out.println("Open");
-		if (e.getActionCommand() == "Save")
+		else if (e.getActionCommand() == "Save")
 			System.out.println("Save");
-		if (e.getActionCommand() == "Close")
+		else if (e.getActionCommand() == "Close")
 			System.exit(0);
-		if (e.getActionCommand() == "Red")
+		else if (e.getActionCommand() == "Red")
 			model.ChangeColor(Color.red);
-		if(e.getActionCommand() == "Blue")
+		else if(e.getActionCommand() == "Blue")
 			model.ChangeColor(Color.blue);
-		if(e.getActionCommand()=="Green")
+		else if(e.getActionCommand()=="Green")
 			model.ChangeColor(Color.green);
-		if(e.getActionCommand()=="Yellow")
+		else if(e.getActionCommand()=="Yellow")
 			model.ChangeColor(Color.yellow);
-		if(e.getActionCommand()=="ColorPanel-PopUp")
-			new ColorPanel();
+		else if(e.getActionCommand()=="ColorPanel-PopUp")
+			new ColorPanel(model);
 
 	}
 }
