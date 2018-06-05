@@ -10,13 +10,22 @@ import javax.swing.JPanel;
 
 public class ViewPanel extends JPanel implements Observer {
 	protected DrawModel model;
+	private Color backcolor = Color.white;
 
 	public ViewPanel(DrawModel m, DrawController c) {
-		this.setBackground(Color.white);
+		this.setBackground(backcolor);
 		this.addMouseListener(c);
 		this.addMouseMotionListener(c);
 		model = m;
 		model.addObserver(this);
+	}
+
+	public void BackPanelColor(Color c) {
+
+		backcolor = c;
+		System.out.println(backcolor);
+	//	repaint();
+		this.setBackground(backcolor);
 	}
 
 	public void paintComponent(Graphics g) {
