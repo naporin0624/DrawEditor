@@ -14,4 +14,10 @@ public class RectangleFigure extends Figure {
 		g.setColor(color);
 		g.drawRect(x, y, width, height);
 	}
+	
+	public void Circle(Graphics g) {
+		g.setColor(color);
+		g.drawOval(x,y,width,height);
+		
+	}
 }

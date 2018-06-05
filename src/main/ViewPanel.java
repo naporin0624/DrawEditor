@@ -21,9 +21,7 @@ public class ViewPanel extends JPanel implements Observer {
 	}
 
 	public void BackPanelColor(Color c) {
-
 		backcolor = c;
-		System.out.println(backcolor);
 		this.setBackground(backcolor);
 	}
 
@@ -32,7 +30,8 @@ public class ViewPanel extends JPanel implements Observer {
 		ArrayList<Figure> fig = model.getFigures();
 		for (int i = 0; i < fig.size(); i++) {
 			Figure f = fig.get(i);
-			f.draw(g);
+			//f.draw(g);
+			f.Circle(g);
 		}
 	}
 
