@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Figure {
-	protected int x, y, width, height;
+	protected int x, y, width, height, size;
 	protected Color color;
 
 	public Figure(int x, int y, int w, int h, Color c) {
@@ -30,13 +30,11 @@ public class Figure {
 		int newy = Math.min(y1, y2);
 		int neww = Math.abs(x1 - x2);
 		int newh = Math.abs(y1 - y2);
+		//size = (int)Math.sqrt(Math.pow(neww, 2)+Math.pow(newh, 2));
 		setLocation(newx, newy);
 		setSize(neww, newh);
 	}
-	public void Circle(int x1,int y1, int x2, int y2) {
-		
-	}
-	
+
 	public void draw(Graphics g) {
 	}
 }

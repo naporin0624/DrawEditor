@@ -17,7 +17,7 @@ public class ColorPanel extends JFrame implements ActionListener {
 		this.model = model;
 		this.setSize(300, 300);
 		this.setLayout(new GridLayout(3, 2));
-
+		/*
 		b.setBackground(Color.red);
 		b1.setBackground(Color.blue);
 		b2.setBackground(Color.green);
@@ -25,7 +25,7 @@ public class ColorPanel extends JFrame implements ActionListener {
 		b4.setBackground(Color.white);
 		b5.setBackground(Color.black);
 		b5.setForeground(Color.white);
-		
+		*/
 		this.add(b);
 		this.add(b1);
 		this.add(b3);
