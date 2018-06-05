@@ -10,13 +10,19 @@ import javax.swing.JPanel;
 
 public class ViewPanel extends JPanel implements Observer {
 	protected DrawModel model;
+	private Color backcolor = Color.white;
 
 	public ViewPanel(DrawModel m, DrawController c) {
-		this.setBackground(Color.white);
+		this.setBackground(backcolor);
 		this.addMouseListener(c);
 		this.addMouseMotionListener(c);
 		model = m;
 		model.addObserver(this);
+	}
+
+	public void BackPanelColor(Color c) {
+		backcolor = c;
+		this.setBackground(backcolor);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -24,7 +30,9 @@ public class ViewPanel extends JPanel implements Observer {
 		ArrayList<Figure> fig = model.getFigures();
 		for (int i = 0; i < fig.size(); i++) {
 			Figure f = fig.get(i);
-			f.draw(g);
+			//f.draw(g);
+			f.Circle(g);
+			//f.line(g);
 		}
 	}
 
