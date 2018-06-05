@@ -31,13 +31,14 @@ public class DrawFrame extends JFrame implements ActionListener {
 		JMenuItem newm = new JMenuItem("New Edit"), openm = new JMenuItem("Open"), savem = new JMenuItem("Save"),
 				closem = new JMenuItem("Close");
 		JMenuItem redm = new JMenuItem("Red"), bluem = new JMenuItem("Blue"), greenm = new JMenuItem("Green"),
-				yellowm = new JMenuItem("Yellow"), otherm = new JMenuItem("other");
+				yellowm = new JMenuItem("Yellow"), otherm = new JMenuItem("other"),popupm = new JMenuItem("ColorPanel-PopUp");
 		// メニューアイテムの追加
 		SMenu.add(newm);
 		SMenu.add(openm);
 		SMenu.add(savem);
 		SMenu.add(closem);
-
+		
+		CMenu.add(popupm);
 		CMenu.add(redm);
 		CMenu.add(bluem);
 		CMenu.add(greenm);
@@ -59,6 +60,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 		greenm.addActionListener(this);
 		yellowm.addActionListener(this);
 		otherm.addActionListener(this);
+		popupm.addActionListener(this);
 
 		// 以下描画
 		this.setBackground(Color.black);
@@ -90,6 +92,8 @@ public class DrawFrame extends JFrame implements ActionListener {
 			model.ChangeColor(Color.green);
 		if(e.getActionCommand()=="Yellow")
 			model.ChangeColor(Color.yellow);
+		if(e.getActionCommand()=="ColorPanel-PopUp")
+			new ColorPanel();
 
 	}
 }
