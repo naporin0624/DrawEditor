@@ -24,7 +24,6 @@ public class ViewPanel extends JPanel implements Observer {
 
 		backcolor = c;
 		System.out.println(backcolor);
-	//	repaint();
 		this.setBackground(backcolor);
 	}
 
