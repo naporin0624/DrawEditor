@@ -31,13 +31,14 @@ public class DrawFrame extends JFrame implements ActionListener {
 		JMenuItem newm = new JMenuItem("New Edit"), openm = new JMenuItem("Open"), savem = new JMenuItem("Save"),
 				closem = new JMenuItem("Close");
 		JMenuItem redm = new JMenuItem("Red"), bluem = new JMenuItem("Blue"), greenm = new JMenuItem("Green"),
-				yellowm = new JMenuItem("Yellow"), otherm = new JMenuItem("other"),popupm = new JMenuItem("ColorPanel-PopUp");
+				yellowm = new JMenuItem("Yellow"), otherm = new JMenuItem("other"),
+				popupm = new JMenuItem("ColorPanel-PopUp");
 		// メニューアイテムの追加
 		SMenu.add(newm);
 		SMenu.add(openm);
 		SMenu.add(savem);
 		SMenu.add(closem);
-		
+
 		CMenu.add(popupm);
 		CMenu.add(redm);
 		CMenu.add(bluem);
@@ -70,6 +71,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
+
 	public static void main(String argv[]) {
 		new DrawFrame();
 	}
@@ -85,13 +87,13 @@ public class DrawFrame extends JFrame implements ActionListener {
 			System.exit(0);
 		else if (e.getActionCommand() == "Red")
 			model.ChangeColor(Color.red);
-		else if(e.getActionCommand() == "Blue")
+		else if (e.getActionCommand() == "Blue")
 			model.ChangeColor(Color.blue);
-		else if(e.getActionCommand()=="Green")
+		else if (e.getActionCommand() == "Green")
 			model.ChangeColor(Color.green);
-		else if(e.getActionCommand()=="Yellow")
+		else if (e.getActionCommand() == "Yellow")
 			model.ChangeColor(Color.yellow);
-		else if(e.getActionCommand()=="ColorPanel-PopUp")
+		else if (e.getActionCommand() == "ColorPanel-PopUp")
 			new ColorPanel(model);
 
 	}
