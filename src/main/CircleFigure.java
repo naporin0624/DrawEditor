@@ -10,7 +10,10 @@ public class CircleFigure extends Figure{
 	public void Circle(Graphics g) {
 		g.setColor(color);
 		g.drawOval(x,y,width,height);
-		
 	}
-	
+	public void CircleFull(Graphics g) {
+		g.setColor(color);
+		g.fillOval(x,y,width,height);
+	}
+
 }

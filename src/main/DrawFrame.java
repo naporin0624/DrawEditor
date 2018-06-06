@@ -1,18 +1,14 @@
 package main;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 
 public class DrawFrame extends JFrame implements ActionListener {
 	DrawModel model;
@@ -80,23 +76,9 @@ public class DrawFrame extends JFrame implements ActionListener {
 		BlackBack.setBackground(Color.black);
 		BlackBack.setForeground(Color.white);
 		
-		Size.add(squarem);
-		Size.add(linem);
-		Size.add(circlem);
-		
-
-		JPanel p1 = new JPanel();
-		True = new JButton("Just Size");
-		JLabel JustFigre = new JLabel("JustFigre"), HLabel = new JLabel("Hight : "), WLabel = new JLabel("Wight : ");
-
-		p1.setLayout(new GridLayout(1, 7));
-		p1.add(JustFigre);
-		JustFigre.setHorizontalAlignment(JLabel.CENTER);
-		p1.add(True);
-		p1.add(HLabel);
-		HLabel.setHorizontalAlignment(JLabel.CENTER);
-		p1.add(WLabel);
-		WLabel.setHorizontalAlignment(JLabel.CENTER);
+		FMenu.add(squarem);
+		FMenu.add(linem);
+		FMenu.add(circlem);
 
 		// イベントリスクの設定
 		newm.addActionListener(this);
@@ -122,13 +104,10 @@ public class DrawFrame extends JFrame implements ActionListener {
 		linem.addActionListener(this);
 		circlem.addActionListener(this);
 
-		True.addActionListener(this);
-
 		// 以下描画
 		this.setBackground(Color.black);
 		this.setTitle("Draw Editor");
 		this.setSize(500, 500);
-		this.add(p1, BorderLayout.NORTH);
 		this.add(view);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);

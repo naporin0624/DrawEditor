@@ -20,10 +20,6 @@ public class Figure {
 		width = w;
 		height = h;
 	}
-	
-	public void getSize(){
-		
-	}
 
 	public void setLocation(int x, int y) {
 		this.x = x;
@@ -31,33 +27,36 @@ public class Figure {
 	}
 
 	public void reshape(int x1, int y1, int x2, int y2) {
-		//四角形
 		int newx = Math.min(x1, x2);
-		//直線
-		//int newx = x1;
-		//四角形
 		int newy = Math.min(y1, y2);
-		//直線
-		//int newy = y1;
-		//四角形
 		int neww = Math.abs(x1 - x2);
 		int newh = Math.abs(y1 - y2);
-		//直線
-		//int neww = x2;
-		//int newh = y2;
-		//size = (int)Math.sqrt(Math.pow(neww, 2)+Math.pow(newh, 2));
+
 		setLocation(newx, newy);
 		setSize(neww, newh);
-		
+
 	}
-	
-	
+
+	public void reshapeline(int x1, int y1, int x2, int y2) {
+		int newx = x1;
+		int newy = y1;
+		int neww = x2;
+		int newh = y2;
+		setLocation(newx, newy);
+		setSize(neww, newh);
+	}
 
 	public void draw(Graphics g) {
 	}
-	
+
 	public void Circle(Graphics g) {
 	}
+	
+	public void CircleFull(Graphics g) {
+		
+	}
+
 	public void line(Graphics g) {
 	}
+	
 }

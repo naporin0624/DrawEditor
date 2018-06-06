@@ -7,6 +7,8 @@ import java.awt.event.MouseMotionListener;
 public class DrawController implements MouseListener, MouseMotionListener {
 	protected DrawModel model;
 	protected int dragStartX, dragStartY;
+	protected Figure drawingFigure;
+	
 
 	public DrawController(DrawModel a) {
 		model = a;
