@@ -8,6 +8,7 @@ public class DrawModel extends Observable {
 	protected ArrayList<Figure> fig;
 	protected Figure drawingFigure;
 	protected Color currentColor = Color.red;
+	private int[] ftype = new int[3];
 
 	public DrawModel() {
 		fig = new ArrayList<Figure>();
@@ -21,12 +22,34 @@ public class DrawModel extends Observable {
 	public ArrayList<Figure> getFigures() {
 		return fig;
 	}
+	
+	
+	public void setsize(String type,ArrayList<Figure> fig){
+		switch (type) {
+		case "square":
+			ftype[0] = fig.size();
+			break;
+		case "circle":
+			ftype[1] = fig.size();
+			break;
+		case "line":
+			ftype[2] = fig.size();
+			break;
+		default:
+			break;
+		}
+	}
+	
+	public int[] getsize() {
+		return ftype;
+	}
 
 	public Figure getFigure(int idx) {
 		return fig.get(idx);
 	}
 
 	public void createFigure(int x, int y) {
+		Figure f = new CircleFigure(x, y, 0, 0, currentColor);
 		Figure f = new RectangleFigure(x, y, 0, 0, currentColor);
 		fig.add(f);
 		drawingFigure = f;

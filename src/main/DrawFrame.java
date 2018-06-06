@@ -40,11 +40,15 @@ public class DrawFrame extends JFrame implements ActionListener {
 		Menu.add(BGColor);
 		JMenuItem newm = new JMenuItem("New Edit"), openm = new JMenuItem("Open"), savem = new JMenuItem("Save"),
 				closem = new JMenuItem("Close");
+
 		JMenuItem redm = new JMenuItem("Red"), bluem = new JMenuItem("Blue"), greenm = new JMenuItem("Green"),
 				yellowm = new JMenuItem("Yellow"), otherm = new JMenuItem("Paint Color other");
+
 		JMenuItem RB = new JMenuItem("Red Back"), BB = new JMenuItem("Blue Back"), GB = new JMenuItem("Green Back"),
 				YB = new JMenuItem("Yellow Back"), WB = new JMenuItem("White Back"),
 				BlackBack = new JMenuItem("Black Back"), otherB = new JMenuItem("BG Color other");
+
+		JMenuItem squarem = new JMenuItem("Square"), linem = new JMenuItem("Line"), circlem = new JMenuItem("Circle");
 		// メニューアイテムの追加
 		SMenu.add(newm);
 		SMenu.add(openm);
@@ -75,6 +79,11 @@ public class DrawFrame extends JFrame implements ActionListener {
 		WB.setBackground(Color.white);
 		BlackBack.setBackground(Color.black);
 		BlackBack.setForeground(Color.white);
+		
+		Size.add(squarem);
+		Size.add(linem);
+		Size.add(circlem);
+		
 
 		JPanel p1 = new JPanel();
 		True = new JButton("Just Size");
@@ -109,6 +118,10 @@ public class DrawFrame extends JFrame implements ActionListener {
 		BlackBack.addActionListener(this);
 		otherB.addActionListener(this);
 
+		squarem.addActionListener(this);
+		linem.addActionListener(this);
+		circlem.addActionListener(this);
+
 		True.addActionListener(this);
 
 		// 以下描画
@@ -126,7 +139,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		//Fileの中身
+		// Fileの中身
 		if (e.getActionCommand() == "New Edit")
 			System.out.println("New Edit");
 		else if (e.getActionCommand() == "Open")
@@ -136,7 +149,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 		else if (e.getActionCommand() == "Close")
 			System.exit(0);
 
-		//Colorの中身
+		// Colorの中身
 		else if (e.getActionCommand() == "Red")
 			model.ChangeColor(Color.red);
 		else if (e.getActionCommand() == "Blue")
@@ -150,7 +163,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 			model.ChangeColor(c);
 		}
 
-		//BGColoroの中身
+		// BGColoroの中身
 		else if (e.getActionCommand() == "Red Back")
 			view.BackPanelColor(Color.red);
 		else if (e.getActionCommand() == "Blue Back")
@@ -174,6 +187,15 @@ public class DrawFrame extends JFrame implements ActionListener {
 			else
 				True.setBackground(null);
 		}
-
+		
+		else if(e.getActionCommand() == "Square") {
+			view.ChangeShape("square");
+		}
+		else if(e.getActionCommand() == "Line") {
+			view.ChangeShape("line");
+		}
+		else if(e.getActionCommand() == "Circle") {
+			view.ChangeShape("circle");
+		}
 	}
 }
