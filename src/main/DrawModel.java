@@ -56,11 +56,11 @@ public class DrawModel extends Observable {
 			drawingFigure = SquareF;
 		}
 		if (s == "circle") {
-			Figure CircleF = new CircleFigure(x, y, 0, 0, currentColor);
+			Figure CircleF = new RectangleFigure(x, y, 0, 0, currentColor);
 			Cfig.add(CircleF);
 			drawingFigure = CircleF;
 		} else if (s == "line") {
-			Figure LineF = new LineFigure(x, y, 0, 0, currentColor);
+			Figure LineF = new RectangleFigure(x, y, 0, 0, currentColor);
 			Lfig.add(LineF);
 			drawingFigure = LineF;
 		}

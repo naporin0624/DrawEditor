@@ -13,6 +13,18 @@ public class RectangleFigure extends Figure {
 	public void draw(Graphics g) {
 		g.setColor(color);
 		g.drawRect(x, y, width, height);
+	}
+	public void Circle(Graphics g) {
+		g.setColor(color);
+		g.drawOval(x,y,width,height);
+	}
+	public void CircleFull(Graphics g) {
+		g.setColor(color);
+		g.fillOval(x,y,width,height);
+	}
+	public void line(Graphics g) {
+		g.setColor(color);
+		g.drawLine(x,y,width,height);
 	}	
 }
 
