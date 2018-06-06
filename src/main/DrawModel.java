@@ -5,13 +5,15 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 public class DrawModel extends Observable {
-	protected ArrayList<Figure> fig;
+	protected ArrayList<Figure> Sfig, Cfig, Lfig;
 	protected Figure drawingFigure;
 	protected Color currentColor = Color.red;
-	private int[] ftype = new int[3];
+	private String s = "square";
 
 	public DrawModel() {
-		fig = new ArrayList<Figure>();
+		Sfig = new ArrayList<Figure>();
+		Cfig = new ArrayList<Figure>();
+		Lfig = new ArrayList<Figure>();
 		drawingFigure = null; // null は定数．C言語のNULLと同じで，何も入っていないという意味．
 	}
 
@@ -19,40 +21,49 @@ public class DrawModel extends Observable {
 		currentColor = c;
 	}
 
-	public ArrayList<Figure> getFigures() {
-		return fig;
-	}
-	
-	
-	public void setsize(String type,ArrayList<Figure> fig){
-		switch (type) {
-		case "square":
-			ftype[0] = fig.size();
-			break;
-		case "circle":
-			ftype[1] = fig.size();
-			break;
-		case "line":
-			ftype[2] = fig.size();
-			break;
-		default:
-			break;
-		}
-	}
-	
-	public int[] getsize() {
-		return ftype;
+	public void ChangeShape(String s) {
+		this.s = s;
 	}
 
-	public Figure getFigure(int idx) {
-		return fig.get(idx);
+	public ArrayList<Figure> getSquareF() {
+		return Sfig;
+	}
+
+	public ArrayList<Figure> getCircleF() {
+		return Cfig;
+	}
+
+	public ArrayList<Figure> getLineF() {
+		return Lfig;
+	}
+
+	public Figure getFigureS(int idx) {
+		return Sfig.get(idx);
+	}
+
+	public Figure getFigureC(int idx) {
+		return Cfig.get(idx);
+	}
+
+	public Figure getFigureL(int idx) {
+		return Lfig.get(idx);
 	}
 
 	public void createFigure(int x, int y) {
-		Figure f = new CircleFigure(x, y, 0, 0, currentColor);
-		Figure f = new RectangleFigure(x, y, 0, 0, currentColor);
-		fig.add(f);
-		drawingFigure = f;
+		if (s == "square") {
+			Figure SquareF = new RectangleFigure(x, y, 0, 0, currentColor);
+			Sfig.add(SquareF);
+			drawingFigure = SquareF;
+		}
+		if (s == "circle") {
+			Figure CircleF = new CircleFigure(x, y, 0, 0, currentColor);
+			Cfig.add(CircleF);
+			drawingFigure = CircleF;
+		} else if (s == "line") {
+			Figure LineF = new LineFigure(x, y, 0, 0, currentColor);
+			Lfig.add(LineF);
+			drawingFigure = LineF;
+		}
 		setChanged();
 		notifyObservers();
 	}

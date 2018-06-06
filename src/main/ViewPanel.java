@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 public class ViewPanel extends JPanel implements Observer {
 	protected DrawModel model;
 	private Color backcolor = Color.white;
-	private String drawshape = "square";
 
 	public ViewPanel(DrawModel m, DrawController c) {
 		this.setBackground(backcolor);
@@ -26,43 +25,25 @@ public class ViewPanel extends JPanel implements Observer {
 		this.setBackground(backcolor);
 	}
 
-	public void ChangeShape(String shape) {
-		drawshape = shape;
-	}
-
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		ArrayList<Figure> fig = model.getFigures();
+		ArrayList<Figure> Sfig = model.getSquareF();
+		ArrayList<Figure> Cfig = model.getCircleF();
+		ArrayList<Figure> Lfig = model.getLineF();
 		Figure f;
-		int [] size = new int[3];
-		int i;
-		
-		switch(drawshape) {
-		case "square":
-			model.setsize("square", fig);
-			break;
-		case "circle":
-			model.setsize("circle", fig);
-			break;
-		case "line":
-			model.setsize("line", fig);
-			break;
-		default:
-			break;
-		}
-		size = model.getsize();
-		for(i=0;i<size[0];i++) {
-			f = fig.get(i);
+		for (int i = 0; i < Sfig.size(); i++) {
+			f = Sfig.get(i);
 			f.draw(g);
 		}
-		for (i = 0; i < size[1]; i++) {
-			f = fig.get(i);
+		for (int i = 0; i < Cfig.size(); i++) {
+			f = Cfig.get(i);
 			f.Circle(g);
 		}
-		for(i=0;i<size[i];i++) {
-			f=fig.get(i);
+		for (int i = 0; i < Lfig.size(); i++) {
+			f = Lfig.get(i);
 			f.line(g);
 		}
+
 	}
 
 	public void update(Observable o, Object arg) {

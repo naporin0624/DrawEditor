@@ -189,13 +189,13 @@ public class DrawFrame extends JFrame implements ActionListener {
 		}
 		
 		else if(e.getActionCommand() == "Square") {
-			view.ChangeShape("square");
+			model.ChangeShape("square");
 		}
 		else if(e.getActionCommand() == "Line") {
-			view.ChangeShape("line");
+			model.ChangeShape("line");
 		}
 		else if(e.getActionCommand() == "Circle") {
-			view.ChangeShape("circle");
+			model.ChangeShape("circle");
 		}
 	}
 }
