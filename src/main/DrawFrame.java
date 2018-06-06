@@ -1,14 +1,16 @@
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 public class DrawFrame extends JFrame implements ActionListener {
 	DrawModel model;
@@ -16,7 +18,6 @@ public class DrawFrame extends JFrame implements ActionListener {
 	DrawController cont;
 	ColorPanel Cpanel;
 	Color c;
-	JButton True;
 
 	public DrawFrame() {
 		model = new DrawModel();
@@ -28,6 +29,9 @@ public class DrawFrame extends JFrame implements ActionListener {
 		setJMenuBar(Menu);
 		JMenu SMenu = new JMenu("File"), CMenu = new JMenu("Color"), FMenu = new JMenu("Figre"),
 				Size = new JMenu("Size"), BGColor = new JMenu("BGColor");
+
+		JPanel p = new JPanel();
+		JCheckBox Fullcheck = new JCheckBox("Full");
 
 		Menu.add(SMenu);
 		Menu.add(CMenu);
@@ -75,10 +79,12 @@ public class DrawFrame extends JFrame implements ActionListener {
 		WB.setBackground(Color.white);
 		BlackBack.setBackground(Color.black);
 		BlackBack.setForeground(Color.white);
-		
+
 		FMenu.add(squarem);
 		FMenu.add(linem);
 		FMenu.add(circlem);
+
+		p.add(Fullcheck);
 
 		// イベントリスクの設定
 		newm.addActionListener(this);
@@ -104,10 +110,13 @@ public class DrawFrame extends JFrame implements ActionListener {
 		linem.addActionListener(this);
 		circlem.addActionListener(this);
 
+		Fullcheck.addActionListener(this);
+
 		// 以下描画
 		this.setBackground(Color.black);
 		this.setTitle("Draw Editor");
 		this.setSize(500, 500);
+		this.add(p, BorderLayout.NORTH);
 		this.add(view);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -160,20 +169,11 @@ public class DrawFrame extends JFrame implements ActionListener {
 			view.BackPanelColor(c);
 		}
 
-		else if (e.getActionCommand() == "Just Size") {
-			if (True.getBackground() != Color.red)
-				True.setBackground(Color.red);
-			else
-				True.setBackground(null);
-		}
-		
-		else if(e.getActionCommand() == "Square") {
+		else if (e.getActionCommand() == "Square") {
 			model.ChangeShape("square");
-		}
-		else if(e.getActionCommand() == "Line") {
+		} else if (e.getActionCommand() == "Line") {
 			model.ChangeShape("line");
-		}
-		else if(e.getActionCommand() == "Circle") {
+		} else if (e.getActionCommand() == "Circle") {
 			model.ChangeShape("circle");
 		}
 	}

@@ -51,12 +51,12 @@ public class Figure {
 
 	public void Circle(Graphics g) {
 	}
-	
+
 	public void CircleFull(Graphics g) {
-		
+
 	}
 
 	public void line(Graphics g) {
 	}
-	
+
 }

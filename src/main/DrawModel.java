@@ -70,8 +70,10 @@ public class DrawModel extends Observable {
 
 	public void reshapeFigure(int x1, int y1, int x2, int y2) {
 		if (drawingFigure != null) {
-			if(s=="line")drawingFigure.reshapeline(x1, y1, x2, y2);
-			else drawingFigure.reshape(x1, y1, x2, y2);
+			if (s == "line")
+				drawingFigure.reshapeline(x1, y1, x2, y2);
+			else
+				drawingFigure.reshape(x1, y1, x2, y2);
 			setChanged();
 			notifyObservers();
 		}

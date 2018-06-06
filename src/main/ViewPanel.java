@@ -37,7 +37,7 @@ public class ViewPanel extends JPanel implements Observer {
 		}
 		for (int i = 0; i < Cfig.size(); i++) {
 			f = Cfig.get(i);
-			f.CircleFull(g);
+				f.Circle(g);
 		}
 		for (int i = 0; i < Lfig.size(); i++) {
 			f = Lfig.get(i);
