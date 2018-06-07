@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -12,11 +13,12 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 public class DrawMenu extends JFrame implements ActionListener {
-	ColorPanel Cpanel;
-	Color c;
-	DrawModel model;
-	ViewPanel view;
-	JMenuBar Menu;
+	protected ColorPanel Cpanel;
+	protected Color c;
+	protected DrawModel model;
+	protected ViewPanel view;
+	protected JMenuBar Menu;
+	protected JPanel p;
 
 	public DrawMenu() {
 		Cpanel = new ColorPanel();
@@ -25,8 +27,9 @@ public class DrawMenu extends JFrame implements ActionListener {
 		JMenu SMenu = new JMenu("File"), CMenu = new JMenu("Color"), FMenu = new JMenu("Figre"),
 				Size = new JMenu("Size"), BGColor = new JMenu("BGColor");
 
-		JPanel p = new JPanel();
+		p = new JPanel();
 		JCheckBox Fullcheck = new JCheckBox("Full");
+		JButton AllClear = new JButton("Clear"), ReDraw = new JButton("ReDraw");
 
 		Menu.add(SMenu);
 		Menu.add(CMenu);
@@ -83,6 +86,8 @@ public class DrawMenu extends JFrame implements ActionListener {
 		FMenu.add(Poligenm);
 
 		p.add(Fullcheck);
+		p.add(AllClear);
+		p.add(ReDraw);
 
 		// イベントリスクの設定
 		newm.addActionListener(this);
@@ -110,10 +115,8 @@ public class DrawMenu extends JFrame implements ActionListener {
 		Poligenm.addActionListener(this);
 
 		Fullcheck.addActionListener(this);
-	}
-
-	public JMenuBar getmenu() {
-		return Menu;
+		AllClear.addActionListener(this);
+		ReDraw.addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -168,6 +171,15 @@ public class DrawMenu extends JFrame implements ActionListener {
 		} else if (e.getActionCommand() == "Poligen") {
 			model.ChangeShape("poligen");
 		}
+		
+		else if (e.getActionCommand() == "Full")
+			return;
+
+		else if (e.getActionCommand() == "Clear")
+			view.AllClear();
+
+		else if (e.getActionCommand() == "ReDraw")
+			view.removeFigure();
 
 	}
 }
