@@ -5,15 +5,13 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 public class DrawModel extends Observable {
-	protected ArrayList<Figure> Sfig, Cfig, Lfig;
-	protected Figure drawingFigure;
+	protected ArrayList<Figure> fig;
+	protected Figure drawingFigure,F;
 	protected Color currentColor = Color.red;
 	private String s = "square";
 
 	public DrawModel() {
-		Sfig = new ArrayList<Figure>();
-		Cfig = new ArrayList<Figure>();
-		Lfig = new ArrayList<Figure>();
+		fig = new ArrayList<Figure>();
 		drawingFigure = null; // null は定数．C言語のNULLと同じで，何も入っていないという意味．
 	}
 
@@ -25,44 +23,32 @@ public class DrawModel extends Observable {
 		this.s = s;
 	}
 
-	public ArrayList<Figure> getSquareF() {
-		return Sfig;
+	public ArrayList<Figure> getFigure() {
+		return fig;
 	}
 
-	public ArrayList<Figure> getCircleF() {
-		return Cfig;
-	}
-
-	public ArrayList<Figure> getLineF() {
-		return Lfig;
-	}
-
-	public Figure getFigureS(int idx) {
-		return Sfig.get(idx);
-	}
-
-	public Figure getFigureC(int idx) {
-		return Cfig.get(idx);
-	}
-
-	public Figure getFigureL(int idx) {
-		return Lfig.get(idx);
+	public Figure getFigure(int idx) {
+		return fig.get(idx);
 	}
 
 	public void createFigure(int x, int y) {
 		if (s == "square") {
-			Figure SquareF = new RectangleFigure(x, y, 0, 0, currentColor);
-			Sfig.add(SquareF);
-			drawingFigure = SquareF;
+			F = new RectangleFigure(x, y, 0, 0, currentColor);
+			fig.add(F);
+			drawingFigure = F;
 		}
 		if (s == "circle") {
-			Figure CircleF = new RectangleFigure(x, y, 0, 0, currentColor);
-			Cfig.add(CircleF);
-			drawingFigure = CircleF;
+			F = new RectangleFigure(x, y, 0, 0, currentColor);
+			fig.add(F);
+			drawingFigure = F;
 		} else if (s == "line") {
-			Figure LineF = new RectangleFigure(x, y, 0, 0, currentColor);
-			Lfig.add(LineF);
-			drawingFigure = LineF;
+			F = new RectangleFigure(x, y, x, y, currentColor);
+			fig.add(F);
+			drawingFigure = F;
+		}else if(s=="tri") {
+			F = new RectangleFigure(x, y, x, y, currentColor);
+			fig.add(F);
+			drawingFigure = F;
 		}
 		setChanged();
 		notifyObservers();

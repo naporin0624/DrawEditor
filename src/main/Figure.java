@@ -53,10 +53,11 @@ public class Figure {
 	}
 
 	public void CircleFull(Graphics g) {
-
 	}
 
 	public void line(Graphics g) {
 	}
-
-}
+	
+	public void drawPoligen(Graphics g) {
+	}
+	}
