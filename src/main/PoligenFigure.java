@@ -10,8 +10,8 @@ public class PoligenFigure extends Figure{
 	}
 	public void draw(Graphics g) {
 		g.setColor(color);
-		int xPoint[] = {x,x+width,x+width};
-		int yPoint[] = {y,y+height,y+height};
+		int xPoint[] = {x,2*x-width,width};
+		int yPoint[] = {y,height,height};
 		 g.drawPolygon(xPoint, yPoint, 3);
 	}
 }

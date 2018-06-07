@@ -11,7 +11,7 @@ public class Figure {
 		this.x = x;
 		this.y = y; // this.x, this.y はインスタンス変数を指します．
 		width = w;//newx - x の座標
-		height = h;//newy -y の座標 
+		height = h;//newy -y の座標
 		// ローカル変数で同名の変数がある場合は，this
 		color = c; // を付けると，インスタンス変数を指すことになります．
 	}
@@ -48,16 +48,4 @@ public class Figure {
 
 	public void draw(Graphics g) {
 	}
-
-	public void Circle(Graphics g) {
-	}
-
-	public void CircleFull(Graphics g) {
-	}
-
-	public void line(Graphics g) {
-	}
-	
-	public void drawPoligen(Graphics g) {
-	}
-	}
+}

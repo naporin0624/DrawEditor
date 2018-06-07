@@ -48,7 +48,8 @@ public class DrawFrame extends JFrame implements ActionListener {
 				YB = new JMenuItem("Yellow Back"), WB = new JMenuItem("White Back"),
 				BlackBack = new JMenuItem("Black Back"), otherB = new JMenuItem("BG Color other");
 
-		JMenuItem squarem = new JMenuItem("Square"), linem = new JMenuItem("Line"), circlem = new JMenuItem("Circle");
+		JMenuItem squarem = new JMenuItem("Square"), linem = new JMenuItem("Line"), 
+				   circlem = new JMenuItem("Circle"), Poligenm = new JMenuItem("Poligen");;
 		// メニューアイテムの追加
 		SMenu.add(newm);
 		SMenu.add(openm);
@@ -83,6 +84,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 		FMenu.add(squarem);
 		FMenu.add(linem);
 		FMenu.add(circlem);
+		FMenu.add(Poligenm);
 
 		p.add(Fullcheck);
 
@@ -109,6 +111,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 		squarem.addActionListener(this);
 		linem.addActionListener(this);
 		circlem.addActionListener(this);
+		Poligenm.addActionListener(this);
 
 		Fullcheck.addActionListener(this);
 
@@ -175,6 +178,8 @@ public class DrawFrame extends JFrame implements ActionListener {
 			model.ChangeShape("line");
 		} else if (e.getActionCommand() == "Circle") {
 			model.ChangeShape("circle");
+		} else if(e.getActionCommand()=="Poligen") {
+			model.ChangeShape("poligen");
 		}
 	}
 }

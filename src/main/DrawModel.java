@@ -32,31 +32,20 @@ public class DrawModel extends Observable {
 	}
 
 	public void createFigure(int x, int y) {
-		if (s == "square") {
-			F = new RectangleFigure(x, y, 0, 0, currentColor);
-			fig.add(F);
-			drawingFigure = F;
-		}
-		if (s == "circle") {
-			F = new RectangleFigure(x, y, 0, 0, currentColor);
-			fig.add(F);
-			drawingFigure = F;
-		} else if (s == "line") {
-			F = new RectangleFigure(x, y, x, y, currentColor);
-			fig.add(F);
-			drawingFigure = F;
-		}else if(s=="tri") {
-			F = new RectangleFigure(x, y, x, y, currentColor);
-			fig.add(F);
-			drawingFigure = F;
-		}
+		if (s == "square")F = new RectangleFigure(x, y, 0, 0, currentColor);
+		else if (s == "circle")F = new CircleFigure(x, y, 0, 0, currentColor);
+		else if(s == "circleFull")F = new CircleFullFigure(x,y,0,0,currentColor);
+		else if (s == "line")F = new LineFigure(x, y, x, y, currentColor);
+		else if(s=="poligen")F = new PoligenFigure(x, y, x, y, currentColor);
+		fig.add(F);
+		drawingFigure = F;
 		setChanged();
 		notifyObservers();
 	}
 
 	public void reshapeFigure(int x1, int y1, int x2, int y2) {
 		if (drawingFigure != null) {
-			if (s == "line")
+			if (s == "line" || s == "poligen")
 				drawingFigure.reshapeline(x1, y1, x2, y2);
 			else
 				drawingFigure.reshape(x1, y1, x2, y2);
