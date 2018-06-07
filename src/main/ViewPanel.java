@@ -29,14 +29,14 @@ public class ViewPanel extends JPanel implements Observer {
 		super.paintComponent(g);
 		ArrayList<Figure> fig = model.getFigure();
 		Figure f;
-		
+
 		for (int i = 0; i < fig.size(); i++) {
 			f = fig.get(i);
 			f.draw(g);
 		}
 		for (int i = 0; i < fig.size(); i++) {
 			f = fig.get(i);
-				f.Circle(g);
+			f.Circle(g);
 		}
 		for (int i = 0; i < fig.size(); i++) {
 			f = fig.get(i);
