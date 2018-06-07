@@ -31,6 +31,7 @@ public class DrawController implements MouseListener, MouseMotionListener {
 	}
 
 	public void mouseEntered(MouseEvent e) {
+		
 	}
 
 	public void mouseExited(MouseEvent e) {

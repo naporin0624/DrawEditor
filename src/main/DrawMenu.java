@@ -1,11 +1,9 @@
 package main;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -13,27 +11,22 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-public class DrawFrame extends JFrame implements ActionListener {
-	DrawModel model;
-	ViewPanel view;
-	DrawController cont;
+public class DrawMenu extends JFrame implements ActionListener{
 	ColorPanel Cpanel;
 	Color c;
-
-	public DrawFrame() {
-		model = new DrawModel();
-		cont = new DrawController(model);
-		view = new ViewPanel(model, cont);
+	DrawModel model;
+	ViewPanel view;
+	JMenuBar Menu;
+	
+	public DrawMenu() {
 		Cpanel = new ColorPanel();
-
-		JMenuBar Menu = new JMenuBar();
+		Menu = new JMenuBar();
 		setJMenuBar(Menu);
 		JMenu SMenu = new JMenu("File"), CMenu = new JMenu("Color"), FMenu = new JMenu("Figre"),
 				Size = new JMenu("Size"), BGColor = new JMenu("BGColor");
 
 		JPanel p = new JPanel();
 		JCheckBox Fullcheck = new JCheckBox("Full");
-		JButton AllClear = new JButton("Clear"),ReDraw = new JButton("ReDraw");
 
 		Menu.add(SMenu);
 		Menu.add(CMenu);
@@ -89,8 +82,6 @@ public class DrawFrame extends JFrame implements ActionListener {
 		FMenu.add(Poligenm);
 
 		p.add(Fullcheck);
-		p.add(AllClear);
-		p.add(ReDraw);
 
 		// イベントリスクの設定
 		newm.addActionListener(this);
@@ -118,80 +109,64 @@ public class DrawFrame extends JFrame implements ActionListener {
 		Poligenm.addActionListener(this);
 
 		Fullcheck.addActionListener(this);
-		AllClear.addActionListener(this);
-		ReDraw.addActionListener(this);
-
-		// 以下描画
-		this.setBackground(Color.black);
-		this.setTitle("Draw Editor");
-		this.setSize(500, 500);
-		this.add(p, BorderLayout.NORTH);
-		this.add(view);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
 	}
-
-	public static void main(String argv[]) {
-		new DrawFrame();
+	
+	public JMenuBar getmenu() {
+		return Menu;
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		// Fileの中身
-		if (e.getActionCommand() == "New Edit")
-			System.out.println("New Edit");
-		else if (e.getActionCommand() == "Open")
-			System.out.println("Open");
-		else if (e.getActionCommand() == "Save")
-			System.out.println("Save");
-		else if (e.getActionCommand() == "Close")
-			System.exit(0);
+				if (e.getActionCommand() == "New Edit")
+					System.out.println("New Edit");
+				else if (e.getActionCommand() == "Open")
+					System.out.println("Open");
+				else if (e.getActionCommand() == "Save")
+					System.out.println("Save");
+				else if (e.getActionCommand() == "Close")
+					System.exit(0);
 
-		// Colorの中身
-		else if (e.getActionCommand() == "Red")
-			model.ChangeColor(Color.red);
-		else if (e.getActionCommand() == "Blue")
-			model.ChangeColor(Color.blue);
-		else if (e.getActionCommand() == "Green")
-			model.ChangeColor(Color.green);
-		else if (e.getActionCommand() == "Yellow")
-			model.ChangeColor(Color.yellow);
-		else if (e.getActionCommand() == "Paint Color other") {
-			c = Cpanel.ColorPanelwindow();
-			model.ChangeColor(c);
-		}
+				// Colorの中身
+				else if (e.getActionCommand() == "Red")
+					model.ChangeColor(Color.red);
+				else if (e.getActionCommand() == "Blue")
+					model.ChangeColor(Color.blue);
+				else if (e.getActionCommand() == "Green")
+					model.ChangeColor(Color.green);
+				else if (e.getActionCommand() == "Yellow")
+					model.ChangeColor(Color.yellow);
+				else if (e.getActionCommand() == "Paint Color other") {
+					c = Cpanel.ColorPanelwindow();
+					model.ChangeColor(c);
+				}
 
-		// BGColoroの中身
-		else if (e.getActionCommand() == "Red Back")
-			view.BackPanelColor(Color.red);
-		else if (e.getActionCommand() == "Blue Back")
-			view.BackPanelColor(Color.blue);
-		else if (e.getActionCommand() == "Green Back")
-			view.BackPanelColor(Color.green);
-		else if (e.getActionCommand() == "Yellow Back")
-			view.BackPanelColor(Color.yellow);
-		else if (e.getActionCommand() == "White Back")
-			view.BackPanelColor(Color.white);
-		else if (e.getActionCommand() == "Black Back")
-			view.BackPanelColor(Color.black);
-		else if (e.getActionCommand() == "BG Color other") {
-			c = Cpanel.ColorPanelwindow();
-			view.BackPanelColor(c);
-		}
+				// BGColoroの中身
+				else if (e.getActionCommand() == "Red Back")
+					view.BackPanelColor(Color.red);
+				else if (e.getActionCommand() == "Blue Back")
+					view.BackPanelColor(Color.blue);
+				else if (e.getActionCommand() == "Green Back")
+					view.BackPanelColor(Color.green);
+				else if (e.getActionCommand() == "Yellow Back")
+					view.BackPanelColor(Color.yellow);
+				else if (e.getActionCommand() == "White Back")
+					view.BackPanelColor(Color.white);
+				else if (e.getActionCommand() == "Black Back")
+					view.BackPanelColor(Color.black);
+				else if (e.getActionCommand() == "BG Color other") {
+					c = Cpanel.ColorPanelwindow();
+					view.BackPanelColor(c);
+				}
 
-		else if (e.getActionCommand() == "Square") {
-			model.ChangeShape("square");
-		} else if (e.getActionCommand() == "Line") {
-			model.ChangeShape("line");
-		} else if (e.getActionCommand() == "Circle") {
-			model.ChangeShape("circle");
-		} else if(e.getActionCommand()=="Poligen") {
-			model.ChangeShape("poligen");
-		}
+				else if (e.getActionCommand() == "Square") {
+					model.ChangeShape("square");
+				} else if (e.getActionCommand() == "Line") {
+					model.ChangeShape("line");
+				} else if (e.getActionCommand() == "Circle") {
+					model.ChangeShape("circle");
+				} else if(e.getActionCommand()=="Poligen") {
+					model.ChangeShape("poligen");
+				}
 		
-		else if(e.getActionCommand()=="Full")return;
-			
-		else if(e.getActionCommand()=="Clear")view.AllClear();
-			
-		else if(e.getActionCommand()=="ReDraw")view.removeFigure();
 	}
 }

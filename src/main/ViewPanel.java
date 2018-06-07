@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 public class ViewPanel extends JPanel implements Observer {
 	protected DrawModel model;
 	private Color backcolor = Color.white;
+	private ArrayList<Figure> fig;
 
 	public ViewPanel(DrawModel m, DrawController c) {
 		this.setBackground(backcolor);
@@ -27,12 +28,24 @@ public class ViewPanel extends JPanel implements Observer {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		ArrayList<Figure> fig = model.getFigure();
+		fig = model.getFigure();
 		for (int i = 0; i < fig.size(); i++) {
 			Figure f = fig.get(i);
 			f.draw(g);
 		}
 	}
+	public void AllClear() {
+		fig.clear();
+		repaint();
+	}
+	
+	public void removeFigure() {
+		if(fig.size()<1)return;
+		fig.remove(fig.size()-1);
+		repaint();
+		
+	}
+	
 
 	public void update(Observable o, Object arg) {
 		repaint();
