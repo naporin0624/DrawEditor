@@ -8,7 +8,6 @@ public class DrawController implements MouseListener, MouseMotionListener {
 	protected DrawModel model;
 	protected int dragStartX, dragStartY;
 	protected Figure drawingFigure;
-	
 
 	public DrawController(DrawModel a) {
 		model = a;
@@ -31,7 +30,7 @@ public class DrawController implements MouseListener, MouseMotionListener {
 	}
 
 	public void mouseEntered(MouseEvent e) {
-		
+
 	}
 
 	public void mouseExited(MouseEvent e) {

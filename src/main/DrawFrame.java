@@ -33,7 +33,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 
 		JPanel p = new JPanel();
 		JCheckBox Fullcheck = new JCheckBox("Full");
-		JButton AllClear = new JButton("Clear"),ReDraw = new JButton("ReDraw");
+		JButton AllClear = new JButton("Clear"), ReDraw = new JButton("ReDraw");
 
 		Menu.add(SMenu);
 		Menu.add(CMenu);
@@ -50,8 +50,9 @@ public class DrawFrame extends JFrame implements ActionListener {
 				YB = new JMenuItem("Yellow Back"), WB = new JMenuItem("White Back"),
 				BlackBack = new JMenuItem("Black Back"), otherB = new JMenuItem("BG Color other");
 
-		JMenuItem squarem = new JMenuItem("Square"), linem = new JMenuItem("Line"), 
-				   circlem = new JMenuItem("Circle"), Poligenm = new JMenuItem("Poligen");;
+		JMenuItem squarem = new JMenuItem("Square"), linem = new JMenuItem("Line"),
+				circlem = new JMenuItem("Circle"), Poligenm = new JMenuItem("Poligen");
+		;
 		// メニューアイテムの追加
 		SMenu.add(newm);
 		SMenu.add(openm);
@@ -125,7 +126,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 		this.setBackground(Color.black);
 		this.setTitle("Draw Editor");
 		this.setSize(500, 500);
-		this.add(p, BorderLayout.NORTH);
+		this.add(p, BorderLayout.SOUTH);
 		this.add(view);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -184,14 +185,17 @@ public class DrawFrame extends JFrame implements ActionListener {
 			model.ChangeShape("line");
 		} else if (e.getActionCommand() == "Circle") {
 			model.ChangeShape("circle");
-		} else if(e.getActionCommand()=="Poligen") {
+		} else if (e.getActionCommand() == "Poligen") {
 			model.ChangeShape("poligen");
 		}
-		
-		else if(e.getActionCommand()=="Full")return;
-			
-		else if(e.getActionCommand()=="Clear")view.AllClear();
-			
-		else if(e.getActionCommand()=="ReDraw")view.removeFigure();
+
+		else if (e.getActionCommand() == "Full")
+			return;
+
+		else if (e.getActionCommand() == "Clear")
+			view.AllClear();
+
+		else if (e.getActionCommand() == "ReDraw")
+			view.removeFigure();
 	}
 }

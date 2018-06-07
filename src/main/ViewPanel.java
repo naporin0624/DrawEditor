@@ -34,18 +34,19 @@ public class ViewPanel extends JPanel implements Observer {
 			f.draw(g);
 		}
 	}
+
 	public void AllClear() {
 		fig.clear();
 		repaint();
 	}
-	
+
 	public void removeFigure() {
-		if(fig.size()<1)return;
-		fig.remove(fig.size()-1);
+		if (fig.size() < 1)
+			return;
+		fig.remove(fig.size() - 1);
 		repaint();
-		
+
 	}
-	
 
 	public void update(Observable o, Object arg) {
 		repaint();

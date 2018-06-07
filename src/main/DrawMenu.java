@@ -11,13 +11,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-public class DrawMenu extends JFrame implements ActionListener{
+public class DrawMenu extends JFrame implements ActionListener {
 	ColorPanel Cpanel;
 	Color c;
 	DrawModel model;
 	ViewPanel view;
 	JMenuBar Menu;
-	
+
 	public DrawMenu() {
 		Cpanel = new ColorPanel();
 		Menu = new JMenuBar();
@@ -43,8 +43,9 @@ public class DrawMenu extends JFrame implements ActionListener{
 				YB = new JMenuItem("Yellow Back"), WB = new JMenuItem("White Back"),
 				BlackBack = new JMenuItem("Black Back"), otherB = new JMenuItem("BG Color other");
 
-		JMenuItem squarem = new JMenuItem("Square"), linem = new JMenuItem("Line"), 
-				   circlem = new JMenuItem("Circle"), Poligenm = new JMenuItem("Poligen");;
+		JMenuItem squarem = new JMenuItem("Square"), linem = new JMenuItem("Line"),
+				circlem = new JMenuItem("Circle"), Poligenm = new JMenuItem("Poligen");
+		;
 		// メニューアイテムの追加
 		SMenu.add(newm);
 		SMenu.add(openm);
@@ -110,63 +111,63 @@ public class DrawMenu extends JFrame implements ActionListener{
 
 		Fullcheck.addActionListener(this);
 	}
-	
+
 	public JMenuBar getmenu() {
 		return Menu;
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		// Fileの中身
-				if (e.getActionCommand() == "New Edit")
-					System.out.println("New Edit");
-				else if (e.getActionCommand() == "Open")
-					System.out.println("Open");
-				else if (e.getActionCommand() == "Save")
-					System.out.println("Save");
-				else if (e.getActionCommand() == "Close")
-					System.exit(0);
+		if (e.getActionCommand() == "New Edit")
+			System.out.println("New Edit");
+		else if (e.getActionCommand() == "Open")
+			System.out.println("Open");
+		else if (e.getActionCommand() == "Save")
+			System.out.println("Save");
+		else if (e.getActionCommand() == "Close")
+			System.exit(0);
 
-				// Colorの中身
-				else if (e.getActionCommand() == "Red")
-					model.ChangeColor(Color.red);
-				else if (e.getActionCommand() == "Blue")
-					model.ChangeColor(Color.blue);
-				else if (e.getActionCommand() == "Green")
-					model.ChangeColor(Color.green);
-				else if (e.getActionCommand() == "Yellow")
-					model.ChangeColor(Color.yellow);
-				else if (e.getActionCommand() == "Paint Color other") {
-					c = Cpanel.ColorPanelwindow();
-					model.ChangeColor(c);
-				}
+		// Colorの中身
+		else if (e.getActionCommand() == "Red")
+			model.ChangeColor(Color.red);
+		else if (e.getActionCommand() == "Blue")
+			model.ChangeColor(Color.blue);
+		else if (e.getActionCommand() == "Green")
+			model.ChangeColor(Color.green);
+		else if (e.getActionCommand() == "Yellow")
+			model.ChangeColor(Color.yellow);
+		else if (e.getActionCommand() == "Paint Color other") {
+			c = Cpanel.ColorPanelwindow();
+			model.ChangeColor(c);
+		}
 
-				// BGColoroの中身
-				else if (e.getActionCommand() == "Red Back")
-					view.BackPanelColor(Color.red);
-				else if (e.getActionCommand() == "Blue Back")
-					view.BackPanelColor(Color.blue);
-				else if (e.getActionCommand() == "Green Back")
-					view.BackPanelColor(Color.green);
-				else if (e.getActionCommand() == "Yellow Back")
-					view.BackPanelColor(Color.yellow);
-				else if (e.getActionCommand() == "White Back")
-					view.BackPanelColor(Color.white);
-				else if (e.getActionCommand() == "Black Back")
-					view.BackPanelColor(Color.black);
-				else if (e.getActionCommand() == "BG Color other") {
-					c = Cpanel.ColorPanelwindow();
-					view.BackPanelColor(c);
-				}
+		// BGColoroの中身
+		else if (e.getActionCommand() == "Red Back")
+			view.BackPanelColor(Color.red);
+		else if (e.getActionCommand() == "Blue Back")
+			view.BackPanelColor(Color.blue);
+		else if (e.getActionCommand() == "Green Back")
+			view.BackPanelColor(Color.green);
+		else if (e.getActionCommand() == "Yellow Back")
+			view.BackPanelColor(Color.yellow);
+		else if (e.getActionCommand() == "White Back")
+			view.BackPanelColor(Color.white);
+		else if (e.getActionCommand() == "Black Back")
+			view.BackPanelColor(Color.black);
+		else if (e.getActionCommand() == "BG Color other") {
+			c = Cpanel.ColorPanelwindow();
+			view.BackPanelColor(c);
+		}
 
-				else if (e.getActionCommand() == "Square") {
-					model.ChangeShape("square");
-				} else if (e.getActionCommand() == "Line") {
-					model.ChangeShape("line");
-				} else if (e.getActionCommand() == "Circle") {
-					model.ChangeShape("circle");
-				} else if(e.getActionCommand()=="Poligen") {
-					model.ChangeShape("poligen");
-				}
-		
+		else if (e.getActionCommand() == "Square") {
+			model.ChangeShape("square");
+		} else if (e.getActionCommand() == "Line") {
+			model.ChangeShape("line");
+		} else if (e.getActionCommand() == "Circle") {
+			model.ChangeShape("circle");
+		} else if (e.getActionCommand() == "Poligen") {
+			model.ChangeShape("poligen");
+		}
+
 	}
 }
