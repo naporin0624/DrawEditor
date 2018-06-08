@@ -4,16 +4,18 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Figure {
-	protected int x, y, width, height, size;
+	protected int x, y, width, height;
+	protected float size=1.0f;
 	protected Color color;
 
-	public Figure(int x, int y, int w, int h, Color c) {
+	public Figure(int x, int y, int w, int h, float size,Color c) {
 		this.x = x;
 		this.y = y; // this.x, this.y はインスタンス変数を指します．
 		width = w;//newx - x の座標
 		height = h;//newy -y の座標
 		// ローカル変数で同名の変数がある場合は，this
 		color = c; // を付けると，インスタンス変数を指すことになります．
+		this.size = size;
 	}
 
 	public void setSize(int w, int h) {
@@ -24,6 +26,10 @@ public class Figure {
 	public void setLocation(int x, int y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	public void setSize(float size) {
+		this.size = size;
 	}
 
 	public void reshape(int x1, int y1, int x2, int y2) {

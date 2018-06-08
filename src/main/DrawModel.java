@@ -9,6 +9,7 @@ public class DrawModel extends Observable {
 	protected Figure drawingFigure, F;
 	protected Color currentColor = Color.red;
 	private String s = "square";
+	private float size = 1.0f;
 
 	public DrawModel() {
 		fig = new ArrayList<Figure>();
@@ -30,19 +31,23 @@ public class DrawModel extends Observable {
 	public Figure getFigure(int idx) {
 		return fig.get(idx);
 	}
+	public void setSize(float size) {
+		this.size = size;
+	}
 
 	public void createFigure(int x, int y) {
 		if (s == "square")
-			F = new RectangleFigure(x, y, 0, 0, currentColor);
+			F = new RectangleFigure(x, y, 0, 0, size,currentColor);
 		else if (s == "circle")
-			F = new CircleFigure(x, y, 0, 0, currentColor);
+			F = new CircleFigure(x, y, 0, 0, size,currentColor);
 		else if (s == "circleFull")
-			F = new CircleFullFigure(x, y, 0, 0, currentColor);
+			F = new CircleFullFigure(x, y, 0, 0, size,currentColor);
 		else if (s == "line")
-			F = new LineFigure(x, y, x, y, currentColor);
+			F = new LineFigure(x, y, x, y, size,currentColor);
 		else if (s == "poligen")
-			F = new PoligenFigure(x, y, x, y, currentColor);
+			F = new PoligenFigure(x, y, x, y, size,currentColor);
 		fig.add(F);
+		System.out.println(F);
 		drawingFigure = F;
 		setChanged();
 		notifyObservers();

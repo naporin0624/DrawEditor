@@ -46,8 +46,11 @@ public class DrawMenu extends JFrame implements ActionListener {
 				YB = new JMenuItem("Yellow Back"), WB = new JMenuItem("White Back"),
 				BlackBack = new JMenuItem("Black Back"), otherB = new JMenuItem("BG Color other");
 
-		JMenuItem squarem = new JMenuItem("Square"), linem = new JMenuItem("Line"),
-				circlem = new JMenuItem("Circle"), Poligenm = new JMenuItem("Poligen");
+		JMenuItem squarem = new JMenuItem("Square"), linem = new JMenuItem("Line"), circlem = new JMenuItem("Circle"),
+				Poligenm = new JMenuItem("Poligen");
+
+		JMenuItem size1 = new JMenuItem("1"), size2 = new JMenuItem("2"), size3 = new JMenuItem("3"),
+				size4 = new JMenuItem("4"), size5 = new JMenuItem("5"), othersize = new JMenuItem("other size");
 		;
 		// メニューアイテムの追加
 		SMenu.add(newm);
@@ -64,6 +67,13 @@ public class DrawMenu extends JFrame implements ActionListener {
 		bluem.setBackground(Color.blue);
 		greenm.setBackground(Color.green);
 		yellowm.setBackground(Color.yellow);
+
+		Size.add(size1);
+		Size.add(size2);
+		Size.add(size3);
+		Size.add(size4);
+		Size.add(size5);
+		Size.add(othersize);
 
 		BGColor.add(RB);
 		BGColor.add(BB);
@@ -113,6 +123,12 @@ public class DrawMenu extends JFrame implements ActionListener {
 		linem.addActionListener(this);
 		circlem.addActionListener(this);
 		Poligenm.addActionListener(this);
+		
+		size1.addActionListener(this);
+		size2.addActionListener(this);
+		size3.addActionListener(this);
+		size4.addActionListener(this);
+		size5.addActionListener(this);
 
 		Fullcheck.addActionListener(this);
 		AllClear.addActionListener(this);
@@ -171,7 +187,7 @@ public class DrawMenu extends JFrame implements ActionListener {
 		} else if (e.getActionCommand() == "Poligen") {
 			model.ChangeShape("poligen");
 		}
-		
+
 		else if (e.getActionCommand() == "Full")
 			return;
 
@@ -180,6 +196,17 @@ public class DrawMenu extends JFrame implements ActionListener {
 
 		else if (e.getActionCommand() == "ReDraw")
 			view.removeFigure();
+		
+		else if(e.getActionCommand() =="1")
+			model.setSize(1.0f);
+		else if(e.getActionCommand()=="2")
+			model.setSize(2.0f);
+		else if(e.getActionCommand()=="3")
+			model.setSize(3.0f);
+		else if(e.getActionCommand()=="4")
+			model.setSize(4.0f);
+		else if(e.getActionCommand()=="5")
+			model.setSize(5.0f);
 
 	}
 }
