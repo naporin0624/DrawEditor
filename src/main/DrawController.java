@@ -4,13 +4,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public class DrawController implements MouseListener, MouseMotionListener{
+public class DrawController implements MouseListener, MouseMotionListener {
 	protected DrawModel model;
 	protected int dragStartX, dragStartY;
 	protected Figure drawingFigure;
 	protected double angle;
-	protected int flag=0,releaseX,releaseY;
-	
+	protected int flag = 0, releaseX, releaseY;
 
 	public DrawController(DrawModel a) {
 		model = a;
@@ -37,17 +36,17 @@ public class DrawController implements MouseListener, MouseMotionListener{
 	}
 
 	public void mouseEntered(MouseEvent e) {
-		
+
 	}
 
 	public void mouseExited(MouseEvent e) {
 	}
 
 	public void mouseMoved(MouseEvent e) {
-		double centerX = (dragStartX + releaseX)/2;
-		double centerY = (dragStartY + releaseY)/2; 
-		if(flag ==1) {
-			angle = -Math.atan((e.getY()-centerY)/(e.getX()-centerX));
+		double centerX = (dragStartX + releaseX) / 2;
+		double centerY = (dragStartY + releaseY) / 2;
+		if (flag == 1) {
+			angle = -Math.atan((e.getY() - centerY) / (e.getX() - centerX));
 			/*int x1 = NewX((int)(centerX-dragStartX),(int)(centerY-dragStartY),angle);
 			int y1 = NewY((int)(centerX-dragStartX),(int)(centerY-dragStartY),angle);
 			int x2 = NewX((int)(releaseX-centerX),(int)(releaseY-centerY),angle);
@@ -63,6 +62,5 @@ public class DrawController implements MouseListener, MouseMotionListener{
 		return (int)(Math.sin(angle)*x+Math.cos(angle)*y);
 	}
 	*/
-	
-	
+
 }

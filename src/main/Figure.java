@@ -5,9 +5,8 @@ import java.awt.Graphics;
 
 public class Figure {
 	protected int x, y, width, height;
-	protected float size=1.0f;
+	protected float size = 1.0f;
 	protected Color color;
-	
 
 	public Figure(int x, int y, int w, int h, float size, Color c) {
 		this.x = x;
@@ -28,12 +27,11 @@ public class Figure {
 		this.x = x;
 		this.y = y;
 	}
-	
+
 	public int[] getSize() {
-		int FigureSize[] = {x,y,width,height};
+		int FigureSize[] = { x, y, width, height };
 		return FigureSize;
 	}
-
 
 	public void reshape(int x1, int y1, int x2, int y2) {
 		int newx = Math.min(x1, x2);
