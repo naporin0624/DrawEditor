@@ -4,11 +4,10 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 
 public class RectangleFigure extends Figure {
-	public RectangleFigure(int x, int y, int w, int h, float size,Color c) {
+	public RectangleFigure(int x, int y, int w, int h, float size, Color c) {
 		super(x, y, w, h, size, c);
 	}
 	public void draw(Graphics g) {

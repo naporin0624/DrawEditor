@@ -8,6 +8,7 @@ public class DrawModel extends Observable {
 	protected ArrayList<Figure> fig;
 	protected Figure drawingFigure, F;
 	protected Color currentColor = Color.red;
+	protected double angle;
 	private String s = "square";
 	private float size = 1.0f;
 
@@ -16,11 +17,11 @@ public class DrawModel extends Observable {
 		drawingFigure = null; // null は定数．C言語のNULLと同じで，何も入っていないという意味．
 	}
 
-	public void ChangeColor(Color c) {
+	public void setColor(Color c) {
 		currentColor = c;
 	}
 
-	public void ChangeShape(String s) {
+	public void setShape(String s) {
 		this.s = s;
 	}
 
@@ -37,9 +38,9 @@ public class DrawModel extends Observable {
 
 	public void createFigure(int x, int y) {
 		if (s == "square")
-			F = new RectangleFigure(x, y, 0, 0, size,currentColor);
+			F = new RectangleFigure(x, y, 0, 0, size, currentColor);
 		else if (s == "circle")
-			F = new CircleFigure(x, y, 0, 0, size,currentColor);
+			F = new CircleFigure(x, y, 0, 0, size, currentColor);
 		else if (s == "circleFull")
 			F = new CircleFullFigure(x, y, 0, 0, size,currentColor);
 		else if (s == "line")
@@ -47,12 +48,11 @@ public class DrawModel extends Observable {
 		else if (s == "poligen")
 			F = new PoligenFigure(x, y, x, y, size,currentColor);
 		fig.add(F);
-		System.out.println(F);
 		drawingFigure = F;
 		setChanged();
 		notifyObservers();
 	}
-
+	
 	public void reshapeFigure(int x1, int y1, int x2, int y2) {
 		if (drawingFigure != null) {
 			if (s == "line" || s == "poligen")

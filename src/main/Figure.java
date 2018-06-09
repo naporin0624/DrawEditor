@@ -7,8 +7,9 @@ public class Figure {
 	protected int x, y, width, height;
 	protected float size=1.0f;
 	protected Color color;
+	
 
-	public Figure(int x, int y, int w, int h, float size,Color c) {
+	public Figure(int x, int y, int w, int h, float size, Color c) {
 		this.x = x;
 		this.y = y; // this.x, this.y はインスタンス変数を指します．
 		width = w;//newx - x の座標
@@ -28,9 +29,11 @@ public class Figure {
 		this.y = y;
 	}
 	
-	public void setSize(float size) {
-		this.size = size;
+	public int[] getSize() {
+		int FigureSize[] = {x,y,width,height};
+		return FigureSize;
 	}
+
 
 	public void reshape(int x1, int y1, int x2, int y2) {
 		int newx = Math.min(x1, x2);
@@ -44,12 +47,8 @@ public class Figure {
 	}
 
 	public void reshapeline(int x1, int y1, int x2, int y2) {
-		int newx = x1;
-		int newy = y1;
-		int neww = x2;
-		int newh = y2;
-		setLocation(newx, newy);
-		setSize(neww, newh);
+		setLocation(x1, y1);
+		setSize(x2, y2);
 	}
 
 	public void draw(Graphics g) {

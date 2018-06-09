@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 
 public class LineFigure extends Figure {
-	public LineFigure(int x, int y, int w, int h, float size,Color c) {
-		super(x, y, w, h, size,c);
+	public LineFigure(int x, int y, int w, int h, float size, Color c) {
+		super(x, y, w, h, size, c);
 	}
 
 	public void draw(Graphics g) {

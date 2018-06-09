@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -28,9 +29,14 @@ public class ViewPanel extends JPanel implements Observer {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		Graphics2D g2d = (Graphics2D) g;
 		fig = model.getFigure();
 		for (int i = 0; i < fig.size(); i++) {
 			Figure f = fig.get(i);
+			int FS[] = f.getSize();
+			/*AffineTransform af = new AffineTransform();
+			af.setToRotation(45 * Math.PI/180, (int)(FS[0]+FS[2]/2),(int)(FS[1]+FS[3]/2));
+			g2d.setTransform(af);*/
 			f.draw(g);
 		}
 	}
@@ -45,7 +51,6 @@ public class ViewPanel extends JPanel implements Observer {
 			return;
 		fig.remove(fig.size() - 1);
 		repaint();
-
 	}
 
 	public void update(Observable o, Object arg) {
