@@ -41,7 +41,6 @@ public class Figure {
 
 		setLocation(newx, newy);
 		setSize(neww, newh);
-
 	}
 
 	public void reshapeline(int x1, int y1, int x2, int y2) {

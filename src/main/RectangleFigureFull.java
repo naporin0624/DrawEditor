@@ -10,7 +10,6 @@ public class RectangleFigureFull extends Figure {
 
 	public RectangleFigureFull(int x, int y, int w, int h, float size, Color c) {
 		super(x, y, w, h, size, c);
-		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
 	public void draw(Graphics g) {

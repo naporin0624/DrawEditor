@@ -6,10 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class DrawFrame extends JFrame implements ActionListener {
@@ -37,8 +39,8 @@ public class DrawFrame extends JFrame implements ActionListener {
 				Size = new JMenu("Size"), BGColor = new JMenu("BGColor");
 
 		p = new JPanel();
-		JButton AllClear = new JButton("Clear"), ReDraw = new JButton("ReDraw"), lotate = new JButton("Lotate Figure");
-
+		JButton AllClear = new JButton("Clear"), ReDraw = new JButton("ReDraw");
+		JCheckBox Grid = new JCheckBox("Grid");
 		Menu.add(SMenu);
 		Menu.add(CMenu);
 		Menu.add(FMenu);
@@ -59,7 +61,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 				PoligenFull = new JMenuItem("PoligenFull");
 
 		JMenuItem size1 = new JMenuItem("1"), size2 = new JMenuItem("2"), size3 = new JMenuItem("3"),
-				size4 = new JMenuItem("4"), size5 = new JMenuItem("5"), othersize = new JMenuItem("other size");
+				size4 = new JMenuItem("4"), size5 = new JMenuItem("5"), othersize = new JMenuItem("OtherSize");
 
 		// メニューアイテムの追加
 		SMenu.add(newm);
@@ -100,6 +102,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 
 		p.add(AllClear);
 		p.add(ReDraw);
+		p.add(Grid);
 
 		// イベントリスクの設定
 		newm.addActionListener(this);
@@ -129,10 +132,11 @@ public class DrawFrame extends JFrame implements ActionListener {
 		size3.addActionListener(this);
 		size4.addActionListener(this);
 		size5.addActionListener(this);
+		othersize.addActionListener(this);
 
 		AllClear.addActionListener(this);
 		ReDraw.addActionListener(this);
-		lotate.addActionListener(this);
+		Grid.addActionListener(this);
 
 		this.add(p, BorderLayout.SOUTH);
 		this.add(view);
@@ -195,6 +199,9 @@ public class DrawFrame extends JFrame implements ActionListener {
 
 		else if (e.getActionCommand() == "ReDraw")
 			view.removeFigure();
+		
+		else if(e.getActionCommand() == "Grid")
+			model.Gridline();
 
 		else if (e.getActionCommand() == "1")
 			model.setSize(1.0f);
@@ -206,6 +213,15 @@ public class DrawFrame extends JFrame implements ActionListener {
 			model.setSize(4.0f);
 		else if (e.getActionCommand() == "5")
 			model.setSize(5.0f);
+		else if (e.getActionCommand()=="OtherSize") {
+			JFrame frame = new JFrame();
+			String value = JOptionPane.showInputDialog(frame,"Input Draw Size");
+			float size = Float.parseFloat(value);
+			if(size<=0 || value==null) {
+				return ;
+			}
+			model.setSize(Float.parseFloat(value));
+		}
 
 	}
 
