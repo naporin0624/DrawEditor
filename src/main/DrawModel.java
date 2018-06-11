@@ -6,7 +6,7 @@ import java.util.Observable;
 
 public class DrawModel extends Observable {
 	protected ArrayList<Figure> fig;
-	protected ArrayList<Figure> gridfig;
+	private ArrayList<Figure> gridfig;
 	protected Figure drawingFigure, F;
 	protected Color currentColor = Color.red;
 	private String s = "square";
@@ -27,8 +27,8 @@ public class DrawModel extends Observable {
 		this.s = s;
 	}
 
-	public String getShape() {
-		return s;
+	public void setSize(float size) {
+		this.size = size;
 	}
 
 	public ArrayList<Figure> getFigure() {
@@ -41,10 +41,6 @@ public class DrawModel extends Observable {
 
 	public Figure getFigure(int idx) {
 		return fig.get(idx);
-	}
-
-	public void setSize(float size) {
-		this.size = size;
 	}
 
 	public void setGrid(int width) {
@@ -71,12 +67,14 @@ public class DrawModel extends Observable {
 		else if (s == "PFull")
 			F = new PoligenFigureFull(x, y, x, y, size, currentColor);
 		fig.add(F);
+		System.out.println(fig.size());
 		drawingFigure = F;
 		setChanged();
 		notifyObservers();
 	}
 
-	public void Gridline() {;
+	public void Gridline() {
+		;
 		if (gridfig.size() > 0) {
 			gridfig.clear();
 		} else {
@@ -110,11 +108,11 @@ public class DrawModel extends Observable {
 			notifyObservers();
 		}
 	}
-	
+
 	private int GridPosition(int p) {
-		double p1 = (double)(p)/10;
+		double p1 = (double) (p) / 10;
 		p1 = Math.round(p1);
-		return (int)(p1*10);
-		
+		return (int) (p1 * 10);
+
 	}
 }

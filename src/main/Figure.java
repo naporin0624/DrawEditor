@@ -28,11 +28,6 @@ public class Figure {
 		this.y = y;
 	}
 
-	public int[] getSize() {
-		int FigureSize[] = { x, y, width, height };
-		return FigureSize;
-	}
-
 	public void reshape(int x1, int y1, int x2, int y2) {
 		int newx = Math.min(x1, x2);
 		int newy = Math.min(y1, y2);
@@ -44,8 +39,10 @@ public class Figure {
 	}
 
 	public void reshapeline(int x1, int y1, int x2, int y2) {
-		setLocation(x1, y1);
-		setSize(x2, y2);
+		x = x1;
+		y = y1;
+		width = x2;
+		height = y2;
 	}
 
 	public void draw(Graphics g) {
