@@ -30,13 +30,13 @@ public class ViewPanel extends JPanel implements Observer {
 		super.paintComponent(g);
 		fig = model.getFigure();
 		gridfig = model.getGrid();
-		for (int i = 0; i < fig.size(); i++) {
-			Figure f = fig.get(i);
-			f.draw(g);
-		}
 		gridfig = model.getGrid();
 		for (int i = 0; i < gridfig.size(); i++) {
 			Figure f = gridfig.get(i);
+			f.draw(g);
+		}
+		for (int i = 0; i < fig.size(); i++) {
+			Figure f = fig.get(i);
 			f.draw(g);
 		}
 	}

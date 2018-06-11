@@ -76,8 +76,7 @@ public class DrawModel extends Observable {
 		notifyObservers();
 	}
 
-	public void Gridline() {
-		System.out.println(gridfig.size());
+	public void Gridline() {;
 		if (gridfig.size() > 0) {
 			gridfig.clear();
 		} else {
