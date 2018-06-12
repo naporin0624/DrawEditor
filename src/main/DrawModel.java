@@ -18,23 +18,23 @@ public class DrawModel extends Observable {
 		gridfig = new ArrayList<Figure>();
 		drawingFigure = null; // null は定数．C言語のNULLと同じで，何も入っていないという意味．
 	}
-
+	//図形の色をセットするメソッド引数をColor cとしてcurrentColorにcを代入する.currentColorは図形生成クラスの引数として用いられる.
 	public void setColor(Color c) {
 		currentColor = c;
 	}
-
+	//図形の変更を受け取るメソッド、createFigureのそれぞれの図形生成クラスを選択する条件分岐に使われる.
 	public void setShape(String s) {
 		this.s = s;
 	}
-
+	//図形の太さの変更を受け取るメソッド、createFigureの引数であるsizeに使われる.
 	public void setSize(float size) {
 		this.size = size;
 	}
-
+	//getFigureは保存している図形データを返すメソッド
 	public ArrayList<Figure> getFigure() {
 		return fig;
 	}
-
+	//getGridはあらかじめ生成しておいたグリッド線のデータを返す.
 	public ArrayList<Figure> getGrid() {
 		return gridfig;
 	}
@@ -46,7 +46,7 @@ public class DrawModel extends Observable {
 	public void setGrid(int width) {
 		Gwidth = width;
 	}
-
+	//選択した図形から実際に図形データを生成するメソッド.グリッド線が引かれているときに限りグリッド線に合わせる処理を行う.(ソースコード2を参照)マウスのクリック時の座標、ドラッグ時の座標を受け取り、各図形生成クラスがが正しく図形を描けるような値に変換する.
 	public void createFigure(int x, int y) {
 		if (gridfig.size() > 0) {
 			x = GridPosition(x);
@@ -91,7 +91,7 @@ public class DrawModel extends Observable {
 		setChanged();
 		notifyObservers();
 	}
-
+	//マウスの動きに合わせた図形の再生成を行う.各図形生成クラスごとに渡す値の扱いが異なるので条件分岐を行う.
 	public void reshapeFigure(int x1, int y1, int x2, int y2) {
 		if (gridfig.size() > 0) {
 			x1 = GridPosition(x1);

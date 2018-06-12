@@ -14,13 +14,13 @@ public class DrawController implements MouseListener, MouseMotionListener {
 
 	public void mouseClicked(MouseEvent e) {
 	}
-
+	//図形の始点
 	public void mousePressed(MouseEvent e) {
 		dragStartX = e.getX();
 		dragStartY = e.getY();
 		model.createFigure(dragStartX, dragStartY);
 	}
-
+	//終点が変更されるたびにreshapeFigureに値を渡す
 	public void mouseDragged(MouseEvent e) {
 		model.reshapeFigure(dragStartX, dragStartY, e.getX(), e.getY());
 	}

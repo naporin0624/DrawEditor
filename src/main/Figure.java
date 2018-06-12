@@ -27,7 +27,7 @@ public class Figure {
 		this.x = x;
 		this.y = y;
 	}
-
+	//長方形、楕円図形用の座標形成メソッド
 	public void reshape(int x1, int y1, int x2, int y2) {
 		int newx = Math.min(x1, x2);
 		int newy = Math.min(y1, y2);
@@ -37,14 +37,14 @@ public class Figure {
 		setLocation(newx, newy);
 		setSize(neww, newh);
 	}
-
+	//直線、三角形用の座標取得メソッド.この2つの図形は始点と終点を引数とするので、長方形、楕円のような値の形成は必要としない.
 	public void reshapeline(int x1, int y1, int x2, int y2) {
 		x = x1;
 		y = y1;
 		width = x2;
 		height = y2;
 	}
-
+	//Figureクラスのdrawメソッドをオーバーライドしている.ここではGraphics2Dを用いてFigureクラスで形成した座標データを基に長方形の図形データを生成している.
 	public void draw(Graphics g) {
 	}
 }

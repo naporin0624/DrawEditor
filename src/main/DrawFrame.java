@@ -4,9 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -47,7 +49,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 		Menu.add(Size);
 		Menu.add(BGColor);
 
-		JMenuItem newm = new JMenuItem("New Edit"), openm = new JMenuItem("Open"), savem = new JMenuItem("Save"),
+		JMenuItem openm = new JMenuItem("Open"), savem = new JMenuItem("Save"),
 				closem = new JMenuItem("Close");
 
 		JMenuItem redm = new JMenuItem("Red"), bluem = new JMenuItem("Blue"), greenm = new JMenuItem("Green"),
@@ -64,7 +66,6 @@ public class DrawFrame extends JFrame implements ActionListener {
 				size4 = new JMenuItem("4"), size5 = new JMenuItem("5"), othersize = new JMenuItem("OtherSize");
 
 		// メニューアイテムの追加
-		SMenu.add(newm);
 		SMenu.add(openm);
 		SMenu.add(savem);
 		SMenu.add(closem);
@@ -105,7 +106,6 @@ public class DrawFrame extends JFrame implements ActionListener {
 		p.add(Grid);
 
 		// イベントリスクの設定
-		newm.addActionListener(this);
 		openm.addActionListener(this);
 		savem.addActionListener(this);
 		closem.addActionListener(this);
@@ -138,6 +138,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 		ReDraw.addActionListener(this);
 		Grid.addActionListener(this);
 
+		//配置など
 		this.add(p, BorderLayout.SOUTH);
 		this.add(view);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -150,12 +151,38 @@ public class DrawFrame extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		// Fileの中身
-		if (e.getActionCommand() == "New Edit")
-			System.out.println("New Edit");
-		else if (e.getActionCommand() == "Open")
-			System.out.println("Open");
-		else if (e.getActionCommand() == "Save")
-			System.out.println("Save");
+		if (e.getActionCommand() == "Open") {
+			JFileChooser filechooser = new JFileChooser();
+
+			int selected = filechooser.showSaveDialog(this);
+			if (selected == JFileChooser.APPROVE_OPTION) {
+				File file = filechooser.getSelectedFile();
+				FileIO fileio = new FileIO();
+				fileio.getFileName(file.getName());
+				fileio.ImageOutput();
+			} else if (selected == JFileChooser.CANCEL_OPTION) {
+				return;
+			} else if (selected == JFileChooser.ERROR_OPTION) {
+				return;
+			}
+			
+		}
+
+		else if (e.getActionCommand() == "Save") {
+			JFileChooser filechooser = new JFileChooser();
+
+			int selected = filechooser.showSaveDialog(this);
+			if (selected == JFileChooser.APPROVE_OPTION) {
+				File file = filechooser.getSelectedFile();
+				FileIO fileio = new FileIO();
+				fileio.getFileName(file.getName());
+				fileio.ImageOutput();
+			} else if (selected == JFileChooser.CANCEL_OPTION) {
+				return;
+			} else if (selected == JFileChooser.ERROR_OPTION) {
+				return;
+			}
+		}
 		else if (e.getActionCommand() == "Close")
 			System.exit(0);
 
@@ -199,8 +226,8 @@ public class DrawFrame extends JFrame implements ActionListener {
 
 		else if (e.getActionCommand() == "ReDraw")
 			view.removeFigure();
-		
-		else if(e.getActionCommand() == "Grid")
+
+		else if (e.getActionCommand() == "Grid")
 			model.Gridline();
 
 		else if (e.getActionCommand() == "1")
@@ -213,12 +240,12 @@ public class DrawFrame extends JFrame implements ActionListener {
 			model.setSize(4.0f);
 		else if (e.getActionCommand() == "5")
 			model.setSize(5.0f);
-		else if (e.getActionCommand()=="OtherSize") {
+		else if (e.getActionCommand() == "OtherSize") {
 			JFrame frame = new JFrame();
-			String value = JOptionPane.showInputDialog(frame,"Input Draw Size");
+			String value = JOptionPane.showInputDialog(frame, "Input Draw Size");
 			float size = Float.parseFloat(value);
-			if(size<=0 || value==null) {
-				return ;
+			if (size <= 0 || value == null) {
+				return;
 			}
 			model.setSize(Float.parseFloat(value));
 		}

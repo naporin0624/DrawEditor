@@ -11,7 +11,7 @@ public class RectangleFigureFull extends Figure {
 	public RectangleFigureFull(int x, int y, int w, int h, float size, Color c) {
 		super(x, y, w, h, size, c);
 	}
-
+	//RectangleFigureクラスの塗りつぶしバージョン
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(color);
