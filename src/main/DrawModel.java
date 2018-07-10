@@ -5,33 +5,19 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 public class DrawModel extends Observable {
-	protected ArrayList<Figure> fig;
-	private ArrayList<Figure> gridfig;
+	protected ArrayList<Figure> fig,gridfig;
 	protected Figure drawingFigure, F;
-	protected Color currentColor = Color.red;
-	private String s = "square";
-	private float size = 1.0f;
 	private int Gwidth = 10;
+	protected Operation Op;
 
 	public DrawModel() {
 		fig = new ArrayList<Figure>();
 		gridfig = new ArrayList<Figure>();
 		drawingFigure = null; // null は定数．C言語のNULLと同じで，何も入っていないという意味．
 	}
-	//図形の色をセットするメソッド引数をColor cとしてcurrentColorにcを代入する.currentColorは図形生成クラスの引数として用いられる.
-	public void setColor(Color c) {
-		currentColor = c;
-	}
-	//図形の変更を受け取るメソッド、createFigureのそれぞれの図形生成クラスを選択する条件分岐に使われる.
-	public void setShape(String s) {
-		this.s = s;
-	}
-	//図形の太さの変更を受け取るメソッド、createFigureの引数であるsizeに使われる.
-	public void setSize(float size) {
-		this.size = size;
-	}
 	//getFigureは保存している図形データを返すメソッド
 	public ArrayList<Figure> getFigure() {
+		//fig = Op.getFigure();
 		return fig;
 	}
 	//getGridはあらかじめ生成しておいたグリッド線のデータを返す.
@@ -52,22 +38,21 @@ public class DrawModel extends Observable {
 			x = GridPosition(x);
 			y = GridPosition(y);
 		}
-		if (s == "square")
-			F = new RectangleFigure(x, y, 0, 0, size, currentColor);
-		else if (s == "SFull")
-			F = new RectangleFigureFull(x, y, 0, 0, size, currentColor);
-		else if (s == "circle")
-			F = new CircleFigure(x, y, 0, 0, size, currentColor);
-		else if (s == "CFull")
-			F = new CircleFullFigure(x, y, 0, 0, size, currentColor);
-		else if (s == "line")
-			F = new LineFigure(x, y, x, y, size, currentColor);
-		else if (s == "poligen")
-			F = new PoligenFigure(x, y, x, y, size, currentColor);
-		else if (s == "PFull")
-			F = new PoligenFigureFull(x, y, x, y, size, currentColor);
-		fig.add(F);
-		System.out.println(fig.size());
+		if (Op.getShape() == "square")
+			F = new RectangleFigure(x, y, 0, 0, Op.getSize(), Op.getColor());
+		else if (Op.getShape() == "SFull")
+			F = new RectangleFigureFull(x, y, 0, 0, Op.getSize(), Op.getColor());
+		else if (Op.getShape() == "circle")
+			F = new CircleFigure(x, y, 0, 0, Op.getSize(), Op.getColor());
+		else if (Op.getShape() == "CFull")
+			F = new CircleFullFigure(x, y, 0, 0, Op.getSize(), Op.getColor());
+		else if (Op.getShape() == "line")
+			F = new LineFigure(x, y, x, y, Op.getSize(), Op.getColor());
+		else if (Op.getShape() == "poligen")
+			F = new PoligenFigure(x, y, x, y, Op.getSize(), Op.getColor());
+		else if (Op.getShape() == "PFull")
+			F = new PoligenFigureFull(x, y, x, y, Op.getSize(), Op.getColor());
+		Op.setFigure(F);
 		drawingFigure = F;
 		setChanged();
 		notifyObservers();
@@ -100,7 +85,7 @@ public class DrawModel extends Observable {
 			y2 = GridPosition(y2);
 		}
 		if (drawingFigure != null) {
-			if (s == "line" || s == "poligen" || s == "PFull")
+			if (Op.getShape() == "line" || Op.getShape() == "poligen" || Op.getShape() == "PFull")
 				drawingFigure.reshapeline(x1, y1, x2, y2);
 			else
 				drawingFigure.reshape(x1, y1, x2, y2);

@@ -4,11 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -24,6 +22,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 	JMenuBar Menu;
 	ColorPanel Cpanel;
 	Color c;
+	Operation Op;
 
 	public DrawFrame() {
 		model = new DrawModel();
@@ -152,52 +151,25 @@ public class DrawFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// Fileの中身
 		if (e.getActionCommand() == "Open") {
-			JFileChooser filechooser = new JFileChooser();
-
-			int selected = filechooser.showSaveDialog(this);
-			if (selected == JFileChooser.APPROVE_OPTION) {
-				File file = filechooser.getSelectedFile();
-				FileIO fileio = new FileIO();
-				fileio.getFileName(file.getName());
-				fileio.ImageOutput();
-			} else if (selected == JFileChooser.CANCEL_OPTION) {
-				return;
-			} else if (selected == JFileChooser.ERROR_OPTION) {
-				return;
-			}
-			
 		}
 
 		else if (e.getActionCommand() == "Save") {
-			JFileChooser filechooser = new JFileChooser();
-
-			int selected = filechooser.showSaveDialog(this);
-			if (selected == JFileChooser.APPROVE_OPTION) {
-				File file = filechooser.getSelectedFile();
-				FileIO fileio = new FileIO();
-				fileio.getFileName(file.getName());
-				fileio.ImageOutput();
-			} else if (selected == JFileChooser.CANCEL_OPTION) {
-				return;
-			} else if (selected == JFileChooser.ERROR_OPTION) {
-				return;
-			}
 		}
 		else if (e.getActionCommand() == "Close")
 			System.exit(0);
 
 		// Colorの中身
 		else if (e.getActionCommand() == "Red")
-			model.setColor(Color.red);
+			Op.setColor(Color.red);
 		else if (e.getActionCommand() == "Blue")
-			model.setColor(Color.blue);
+			Op.setColor(Color.blue);
 		else if (e.getActionCommand() == "Green")
-			model.setColor(Color.green);
+			Op.setColor(Color.green);
 		else if (e.getActionCommand() == "Yellow")
-			model.setColor(Color.yellow);
+			Op.setColor(Color.yellow);
 		else if (e.getActionCommand() == "Paint Color other") {
 			c = Cpanel.ColorPanelwindow();
-			model.setColor(c);
+			Op.setColor(c);
 		}
 
 		// BGColoroの中身
@@ -207,19 +179,19 @@ public class DrawFrame extends JFrame implements ActionListener {
 			view.BackPanelColor(Color.black);
 
 		else if (e.getActionCommand() == "Square")
-			model.setShape("square");
+			Op.setShape("square");
 		else if (e.getActionCommand() == "SquareFull")
-			model.setShape("SFull");
+			Op.setShape("SFull");
 		else if (e.getActionCommand() == "Line")
-			model.setShape("line");
+			Op.setShape("line");
 		else if (e.getActionCommand() == "Circle")
-			model.setShape("circle");
+			Op.setShape("circle");
 		else if (e.getActionCommand() == "CircleFull")
-			model.setShape("CFull");
+			Op.setShape("CFull");
 		else if (e.getActionCommand() == "Poligen")
-			model.setShape("poligen");
+			Op.setShape("poligen");
 		else if (e.getActionCommand() == "PoligenFull")
-			model.setShape("PFull");
+			Op.setShape("PFull");
 
 		else if (e.getActionCommand() == "Clear")
 			view.AllClear();
@@ -231,15 +203,15 @@ public class DrawFrame extends JFrame implements ActionListener {
 			model.Gridline();
 
 		else if (e.getActionCommand() == "1")
-			model.setSize(1.0f);
+			Op.setSize(1.0f);
 		else if (e.getActionCommand() == "2")
-			model.setSize(2.0f);
+			Op.setSize(2.0f);
 		else if (e.getActionCommand() == "3")
-			model.setSize(3.0f);
+			Op.setSize(3.0f);
 		else if (e.getActionCommand() == "4")
-			model.setSize(4.0f);
+			Op.setSize(4.0f);
 		else if (e.getActionCommand() == "5")
-			model.setSize(5.0f);
+			Op.setSize(5.0f);
 		else if (e.getActionCommand() == "OtherSize") {
 			JFrame frame = new JFrame();
 			String value = JOptionPane.showInputDialog(frame, "Input Draw Size");
@@ -247,7 +219,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 			if (size <= 0 || value == null) {
 				return;
 			}
-			model.setSize(Float.parseFloat(value));
+			Op.setSize(Float.parseFloat(value));
 		}
 
 	}

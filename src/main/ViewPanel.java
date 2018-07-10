@@ -12,6 +12,7 @@ public class ViewPanel extends JPanel implements Observer {
 	protected DrawModel model;
 	private Color backcolor = Color.white;
 	private ArrayList<Figure> fig,gridfig;
+	protected Operation Op;
 
 	public ViewPanel(DrawModel m, DrawController c) {
 		this.setBackground(backcolor);
@@ -49,9 +50,7 @@ public class ViewPanel extends JPanel implements Observer {
 	}
 	//一番新しく追加された図形を消すメソッド.removeメソッドを用い、fig.size()-1の場所にある図形データを削除することで1つ前の図形の削除を行う.
 	public void removeFigure() {
-		if (fig.size() < 1)
-			return;
-		fig.remove(fig.size() - 1);
+		Op.remove_data();
 		repaint();
 	}
 	//DrawModelのcreatFigure,Gridline,reshapeFigure,が実行されるたびに呼び出され、repaint()により図形の再描画を行う.
