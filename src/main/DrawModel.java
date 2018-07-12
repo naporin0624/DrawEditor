@@ -27,10 +27,6 @@ public class DrawModel extends Observable {
 		this.s = s;
 	}
 
-	public String getShape() {
-		return s;
-	}
-
 	public ArrayList<Figure> getFigure() {
 		return fig;
 	}
@@ -47,29 +43,42 @@ public class DrawModel extends Observable {
 		this.size = size;
 	}
 
-	public void setGrid(int width) {
-		Gwidth = width;
-	}
-
 	public void createFigure(int x, int y) {
 		if (gridfig.size() > 0) {
 			x = GridPosition(x);
 			y = GridPosition(y);
 		}
-		if (s == "square")
+		switch(s) {
+
+		case "square":
 			F = new RectangleFigure(x, y, 0, 0, size, currentColor);
-		else if (s == "SFull")
+			break;
+
+		case "SFull":
 			F = new RectangleFigureFull(x, y, 0, 0, size, currentColor);
-		else if (s == "circle")
+			break;
+
+		case "circle":
 			F = new CircleFigure(x, y, 0, 0, size, currentColor);
-		else if (s == "CFull")
+			break;
+
+		case "CFull":
 			F = new CircleFullFigure(x, y, 0, 0, size, currentColor);
-		else if (s == "line")
+			break;
+
+		case "line":
 			F = new LineFigure(x, y, x, y, size, currentColor);
-		else if (s == "poligen")
+			break;
+
+		case "poligen":
 			F = new PoligenFigure(x, y, x, y, size, currentColor);
-		else if (s == "PFull")
+			break;
+
+		case "PFull":
 			F = new PoligenFigureFull(x, y, x, y, size, currentColor);
+			break;
+		}
+
 		fig.add(F);
 		drawingFigure = F;
 		setChanged();
@@ -80,12 +89,12 @@ public class DrawModel extends Observable {
 		if (gridfig.size() > 0) {
 			gridfig.clear();
 		} else {
-			int line = 500 / Gwidth;
+			int line = 10000 / Gwidth;
 			for (int i = 0; i < line; i++) {
 				int linewidth = i * Gwidth;
-				F = new LineFigure(linewidth, 0, linewidth, 500, 1.0f, Color.GRAY);
+				F = new LineFigure(linewidth, 0, linewidth, 10000, 1.0f, Color.GRAY);
 				gridfig.add(F);
-				F = new LineFigure(0, linewidth, 500, linewidth, 1.0f, Color.GRAY);
+				F = new LineFigure(0, linewidth, 10000, linewidth, 1.0f, Color.GRAY);
 				gridfig.add(F);
 			}
 		}
@@ -95,6 +104,7 @@ public class DrawModel extends Observable {
 	}
 
 	public void reshapeFigure(int x1, int y1, int x2, int y2) {
+		
 		if (gridfig.size() > 0) {
 			x1 = GridPosition(x1);
 			y1 = GridPosition(y1);
@@ -110,11 +120,11 @@ public class DrawModel extends Observable {
 			notifyObservers();
 		}
 	}
-	
+
 	private int GridPosition(int p) {
 		double p1 = (double)(p)/10;
 		p1 = Math.round(p1);
 		return (int)(p1*10);
-		
+
 	}
 }
