@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 public class ColorPanel extends JFrame {
 	public Color ColorPanelwindow() {
-		Color color = JColorChooser.showDialog(this, "Color Panel", Color.white);
+		Color color = JColorChooser.showDialog(this, "Color Panel", Color.black);
 		return color;
 
 	}

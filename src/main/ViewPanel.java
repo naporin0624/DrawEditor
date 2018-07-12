@@ -41,6 +41,8 @@ public class ViewPanel extends JPanel implements Observer {
 		}
 	}
 
+
+
 	public void AllClear() {
 		fig.clear();
 		repaint();

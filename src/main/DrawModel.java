@@ -89,12 +89,12 @@ public class DrawModel extends Observable {
 		if (gridfig.size() > 0) {
 			gridfig.clear();
 		} else {
-			int line = 10000 / Gwidth;
+			int line =  5000/ Gwidth;
 			for (int i = 0; i < line; i++) {
 				int linewidth = i * Gwidth;
-				F = new LineFigure(linewidth, 0, linewidth, 10000, 1.0f, Color.GRAY);
+				F = new LineFigure(linewidth, 0, linewidth, 5000, 1.0f, Color.GRAY);
 				gridfig.add(F);
-				F = new LineFigure(0, linewidth, 10000, linewidth, 1.0f, Color.GRAY);
+				F = new LineFigure(0, linewidth, 5000, linewidth, 1.0f, Color.GRAY);
 				gridfig.add(F);
 			}
 		}

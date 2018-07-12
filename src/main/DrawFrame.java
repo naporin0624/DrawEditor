@@ -2,11 +2,17 @@ package main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -22,6 +28,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 	JMenuBar Menu;
 	ColorPanel Cpanel;
 	Color c;
+	FileIO Image_file;
 
 	public DrawFrame() {
 		model = new DrawModel();
@@ -47,7 +54,7 @@ public class DrawFrame extends JFrame implements ActionListener {
 		Menu.add(Size);
 		Menu.add(BGColor);
 
-		JMenuItem newm = new JMenuItem("New Edit"), openm = new JMenuItem("Open"), savem = new JMenuItem("Save"),
+		JMenuItem openm = new JMenuItem("Open"), savem = new JMenuItem("Save"),
 				closem = new JMenuItem("Close");
 
 		JMenuItem redm = new JMenuItem("Red"), bluem = new JMenuItem("Blue"), greenm = new JMenuItem("Green"),
@@ -64,7 +71,6 @@ public class DrawFrame extends JFrame implements ActionListener {
 				size4 = new JMenuItem("4"), size5 = new JMenuItem("5"), othersize = new JMenuItem("OtherSize");
 
 		// メニューアイテムの追加
-		SMenu.add(newm);
 		SMenu.add(openm);
 		SMenu.add(savem);
 		SMenu.add(closem);
@@ -105,7 +111,6 @@ public class DrawFrame extends JFrame implements ActionListener {
 		p.add(Grid);
 
 		// イベントリスクの設定
-		newm.addActionListener(this);
 		openm.addActionListener(this);
 		savem.addActionListener(this);
 		closem.addActionListener(this);
@@ -150,79 +155,119 @@ public class DrawFrame extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		// Fileの中身
-		if (e.getActionCommand() == "New Edit")
-			System.out.println("New Edit");
-		else if (e.getActionCommand() == "Open")
-			System.out.println("Open");
-		else if (e.getActionCommand() == "Save")
-			System.out.println("Save");
-		else if (e.getActionCommand() == "Close")
-			System.exit(0);
+		switch(e.getActionCommand()) {
+			case "Open":
+				break;
+			case "Save":
+				BufferedImage Fig_Image = new BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB);
+				Graphics2D g2d = Fig_Image.createGraphics();
+				ArrayList<Figure> fig = model.getFigure();
+				for (int i = 0; i < fig.size(); i++) {
+					Figure f = fig.get(i);
+					f.draw(g2d);
+				}
+				g2d.dispose();
+				JFileChooser fileDialog = new JFileChooser();
+				int state = fileDialog.showSaveDialog(this);
+				if (state != JFileChooser.APPROVE_OPTION)
+					return;
+				File file = fileDialog.getSelectedFile();
+				String fileName = file.getName();
+				if (!fileName.endsWith(".png"))
+					file = new File(file.getParent(), fileName + ".jpg");
 
-		// Colorの中身
-		else if (e.getActionCommand() == "Red")
-			model.setColor(Color.red);
-		else if (e.getActionCommand() == "Blue")
-			model.setColor(Color.blue);
-		else if (e.getActionCommand() == "Green")
-			model.setColor(Color.green);
-		else if (e.getActionCommand() == "Yellow")
-			model.setColor(Color.yellow);
-		else if (e.getActionCommand() == "Paint Color other") {
-			c = Cpanel.ColorPanelwindow();
-			model.setColor(c);
+				try { ImageIO.write(Fig_Image, "jpg", file); }
+				catch (Exception e1) { e1.printStackTrace(); }
+
+				break;
+			case "Close":
+				System.exit(0);
+				break;
+
+
+			case "Red":
+				model.setColor(Color.red);
+				break;
+			case "Blue":
+				model.setColor(Color.blue);
+				break;
+			case "Green":
+				model.setColor(Color.green);
+				break;
+			case "Yellow":
+				model.setColor(Color.yellow);
+				break;
+			case "Paint Color other":
+				c = Cpanel.ColorPanelwindow();
+				model.setColor(c);
+				break;
+
+
+			case "White Back":
+				view.BackPanelColor(Color.white);
+				break;
+			case "Black Back":
+				view.BackPanelColor(Color.black);
+				break;
+
+
+			case "Square":
+				model.setShape("square");
+				break;
+			case "SuquareFull":
+				model.setShape("SFull");
+				break;
+			case "Line":
+				model.setShape("line");
+				break;
+			case "Circle":
+				model.setShape("circle");
+				break;
+			case "Poligen":
+				model.setShape("CFull");
+				break;
+			case "PoligenFull":
+				model.setShape("PFull");
+				break;
+
+
+			case "Clear":
+				view.AllClear();
+				break;
+			case "ReDraw":
+				view.removeFigure();
+				break;
+			case "Grid":
+				model.Gridline();
+				break;
+
+
+			case "1":
+				model.setSize(1.0f);
+				break;
+			case "2":
+				model.setSize(2.0f);
+				break;
+			case "3":
+				model.setSize(3.0f);
+				break;
+			case "4":
+				model.setSize(4.0f);
+				break;
+			case "5":
+				model.setSize(5.0f);
+				break;
+			case "OtherSize":
+				JFrame frame = new JFrame();
+				String value = JOptionPane.showInputDialog(frame,"Input Draw Size");
+				float size = Float.parseFloat(value);
+				if(size<=0 || value==null) {
+					break;
+				}
+				model.setSize(Float.parseFloat(value));
+				break;
+
 		}
-
-		// BGColoroの中身
-		else if (e.getActionCommand() == "White Back")
-			view.BackPanelColor(Color.white);
-		else if (e.getActionCommand() == "Black Back")
-			view.BackPanelColor(Color.black);
-
-		else if (e.getActionCommand() == "Square")
-			model.setShape("square");
-		else if (e.getActionCommand() == "SquareFull")
-			model.setShape("SFull");
-		else if (e.getActionCommand() == "Line")
-			model.setShape("line");
-		else if (e.getActionCommand() == "Circle")
-			model.setShape("circle");
-		else if (e.getActionCommand() == "CircleFull")
-			model.setShape("CFull");
-		else if (e.getActionCommand() == "Poligen")
-			model.setShape("poligen");
-		else if (e.getActionCommand() == "PoligenFull")
-			model.setShape("PFull");
-
-		else if (e.getActionCommand() == "Clear")
-			view.AllClear();
-
-		else if (e.getActionCommand() == "ReDraw")
-			view.removeFigure();
-		
-		else if(e.getActionCommand() == "Grid")
-			model.Gridline();
-
-		else if (e.getActionCommand() == "1")
-			model.setSize(1.0f);
-		else if (e.getActionCommand() == "2")
-			model.setSize(2.0f);
-		else if (e.getActionCommand() == "3")
-			model.setSize(3.0f);
-		else if (e.getActionCommand() == "4")
-			model.setSize(4.0f);
-		else if (e.getActionCommand() == "5")
-			model.setSize(5.0f);
-		else if (e.getActionCommand()=="OtherSize") {
-			JFrame frame = new JFrame();
-			String value = JOptionPane.showInputDialog(frame,"Input Draw Size");
-			float size = Float.parseFloat(value);
-			if(size<=0 || value==null) {
-				return ;
-			}
-			model.setSize(Float.parseFloat(value));
-		}
-
 	}
 
 }
