@@ -17,7 +17,7 @@ public class Dialog extends JFrame {
 	
 	public void message(String content,String type) {
 		int message_type;
-		String s="特になし";
+		String s;
 		switch(type) {
 		case "error":
 			s = "エラー";

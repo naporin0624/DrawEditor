@@ -5,13 +5,11 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 public class DrawModel extends Observable {
-	protected ArrayList<Figure> fig;
-	protected ArrayList<Figure> gridfig;
+	protected ArrayList<Figure> fig,gridfig;
 	protected Figure drawingFigure, F;
 	protected Color currentColor = Color.red;
-	private String s = "square";
+	private String s = "Rectangle";
 	private float size = 1.0f;
-	private int Gwidth = 10;
 
 	public DrawModel() {
 		fig = new ArrayList<Figure>();
@@ -48,37 +46,37 @@ public class DrawModel extends Observable {
 			x = GridPosition(x);
 			y = GridPosition(y);
 		}
+
 		switch (s) {
+			case "Rectangle":
+				F = new Rectangle(x, y, 0, 0, size, currentColor);
+				break;
 
-		case "square":
-			F = new RectangleFigure(x, y, 0, 0, size, currentColor);
-			break;
+			case "FillRectangle":
+				F = new FillRectangle(x, y, 0, 0, size, currentColor);
+				break;
 
-		case "SFull":
-			F = new RectangleFigureFull(x, y, 0, 0, size, currentColor);
-			break;
+			case "Circle":
+				F = new Circle(x, y, 0, 0, size, currentColor);
+				break;
 
-		case "circle":
-			F = new CircleFigure(x, y, 0, 0, size, currentColor);
-			break;
+			case "FillCircle":
+				F = new FillCircle(x, y, 0, 0, size, currentColor);
+				break;
 
-		case "CFull":
-			F = new CircleFullFigure(x, y, 0, 0, size, currentColor);
-			break;
+			case "Line":
+				F = new Line(x, y, x, y, size, currentColor);
+				break;
 
-		case "line":
-			F = new LineFigure(x, y, x, y, size, currentColor);
-			break;
+			case "Triangle":
+				F = new Triangle(x, y, x, y, size, currentColor);
+				break;
 
-		case "poligen":
-			F = new PoligenFigure(x, y, x, y, size, currentColor);
-			break;
-
-		case "PFull":
-			F = new PoligenFigureFull(x, y, x, y, size, currentColor);
-			break;
+			case "FillTriangle":
+				F = new FillTriangle(x, y, x, y, size, currentColor);
+				break;
 		}
-
+		
 		fig.add(F);
 		drawingFigure = F;
 		setChanged();
@@ -86,20 +84,18 @@ public class DrawModel extends Observable {
 	}
 
 	public void Gridline() {
-		;
 		if (gridfig.size() > 0) {
 			gridfig.clear();
 		} else {
-			int line = 5000 / Gwidth;
+			int line = 500 / 10;
 			for (int i = 0; i < line; i++) {
-				int linewidth = i * Gwidth;
-				F = new LineFigure(linewidth, 0, linewidth, 5000, 1.0f, Color.GRAY);
+				int linewidth = i * 10;
+				F = new Line(linewidth, 0, linewidth, 500, 1.0f, Color.GRAY);
 				gridfig.add(F);
-				F = new LineFigure(0, linewidth, 5000, linewidth, 1.0f, Color.GRAY);
+				F = new Line(0, linewidth, 500, linewidth, 1.0f, Color.GRAY);
 				gridfig.add(F);
 			}
 		}
-		drawingFigure = F;
 		setChanged();
 		notifyObservers();
 	}
@@ -113,7 +109,7 @@ public class DrawModel extends Observable {
 			y2 = GridPosition(y2);
 		}
 		if (drawingFigure != null) {
-			if (s == "line" || s == "poligen" || s == "PFull")
+			if (s == "Line" || s == "Triangle" || s == "FillTriangle")
 				drawingFigure.reshapeline(x1, y1, x2, y2);
 			else
 				drawingFigure.reshape(x1, y1, x2, y2);

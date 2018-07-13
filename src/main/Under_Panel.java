@@ -21,11 +21,14 @@ public class Under_Panel extends JPanel implements ActionListener{
 		this.model = model;
 		button = new ArrayList<JButton>();
 		check = new ArrayList<JCheckBox>();
+		
 		button.add(new JButton("Clear"));
 		button.add(new JButton("ReDraw"));
-		check.add(new JCheckBox("Grid"));
 		Add_Button(button);
+		
+		check.add(new JCheckBox("Grid"));
 		Add_Check(check);
+		
 	}
 	
 	public void Add_Button(ArrayList<JButton> button) {

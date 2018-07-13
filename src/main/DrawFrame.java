@@ -2,22 +2,9 @@ package main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class DrawFrame extends JFrame{
@@ -38,6 +25,7 @@ public class DrawFrame extends JFrame{
 		this.setBackground(Color.black);
 		this.setTitle("Draw Editor");
 		this.setSize(500, 500);
+		this.setResizable(false);
 		setJMenuBar(All_Menu);
 		this.add(Panel, BorderLayout.SOUTH);
 		this.add(view);

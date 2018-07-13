@@ -1,27 +1,28 @@
 package main;
 
 	import java.awt.event.ActionEvent;
-	import java.awt.event.ActionListener;
-	import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-	import javax.swing.JMenuBar;
-	import javax.swing.JMenuItem;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class Figure_Item extends JMenuBar implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	
 	private ArrayList<JMenuItem> menu_item;
+	private String R= "Rectangle", FR = "FillRectangle",L = "Line", C = "Circle", FC="FillCircle", T = "Triangle", FT = "FillTriangle";
 	protected DrawModel model;
 	public Figure_Item(DrawModel model) {
 		this.model = model;
 		menu_item = new ArrayList<JMenuItem>();
-		menu_item.add(new JMenuItem("Square"));
-		menu_item.add(new JMenuItem("Fill Square"));
-		menu_item.add(new JMenuItem("Line"));
-		menu_item.add(new JMenuItem("Circle"));
-		menu_item.add(new JMenuItem("Fill Circle"));
-		menu_item.add(new JMenuItem("Triangle"));
-		menu_item.add(new JMenuItem("Fill Triangle"));
+		menu_item.add(new JMenuItem(R));
+		menu_item.add(new JMenuItem(FR));
+		menu_item.add(new JMenuItem(L));
+		menu_item.add(new JMenuItem(C));
+		menu_item.add(new JMenuItem(FC));
+		menu_item.add(new JMenuItem(T));
+		menu_item.add(new JMenuItem(FT));
 	}
 		
 	public ArrayList<JMenuItem> Add_Item() {
@@ -32,29 +33,29 @@ public class Figure_Item extends JMenuBar implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
-			case "Square":
-				model.setShape("square");
+			case "Rectangle":
+				model.setShape(R);
 				break;
-			case "Fill Square":
-				model.setShape("SFull");
+			case "FillRectangle":
+				model.setShape(FR);
 				break;
 			case "Line":
-				model.setShape("line");
+				model.setShape(L);
 				break;
 			case "Circle":
-				model.setShape("circle");
+				model.setShape(C);
 				break;
-			case "Fill Circle":
-				model.setShape("CFull");
+			case "FillCircle":
+				model.setShape(FC);
 				break;
 			case "Triangle":
-				model.setShape("poligen");
+				model.setShape(T);
 				break;
-			case "Fill Triangle":
-				model.setShape("PFull");
+			case "FillTriangle":
+				model.setShape(FT);
 				break;
 			default:
-				model.setShape("square");
+				model.setShape(R);
 				break;
 		}
 	}

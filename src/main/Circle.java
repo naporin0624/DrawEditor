@@ -6,8 +6,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
-public class CircleFullFigure extends Figure {
-	public CircleFullFigure(int x, int y, int w, int h, float size, Color c) {
+public class Circle extends Figure {
+
+	public Circle(int x, int y, int w, int h, float size, Color c) {
 		super(x, y, w, h, size, c);
 	}
 
@@ -16,7 +17,6 @@ public class CircleFullFigure extends Figure {
 		g2d.setColor(color);
 		BasicStroke supersideStroke = new BasicStroke(size);
 		g2d.setStroke(supersideStroke);
-		g2d.fill(new Ellipse2D.Double(x,y,width,height));
+		g2d.draw(new Ellipse2D.Double(x,y,width,height));
 	}
-
 }

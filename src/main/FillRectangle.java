@@ -6,9 +6,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
-public class RectangleFigureFull extends Figure {
+public class FillRectangle extends Figure {
 
-	public RectangleFigureFull(int x, int y, int w, int h, float size, Color c) {
+	public FillRectangle(int x, int y, int w, int h, float size, Color c) {
 		super(x, y, w, h, size, c);
 	}
 

@@ -17,7 +17,10 @@ public class File_Item extends JMenuBar implements ActionListener {
 		file = new FileIO(model);
 		dialog = new Dialog();
 		menu_item = new ArrayList<JMenuItem>();
-		menu_item.add(new JMenuItem("save"));
+		menu_item.add(new JMenuItem("openImage"));
+		menu_item.add(new JMenuItem("openData"));
+		menu_item.add(new JMenuItem("saveImage"));
+		menu_item.add(new JMenuItem("saveData"));
 		menu_item.add(new JMenuItem("close"));
 	}
 	
@@ -28,14 +31,17 @@ public class File_Item extends JMenuBar implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
-			case "save":
+			case "saveImage":
 				file.saveImage();
+				break;
+			case "saveData":
+				file.saveData();
 				break;
 			case "close":
 				System.exit(0);
 				break;
 			default:
-				dialog.message("想定外の操作", "waring");
+				dialog.message("未実装", "waring");
 				break;
 		}
 	}
