@@ -39,7 +39,7 @@ public class DrawModel extends Observable {
 		return fig.get(idx);
 	}
 
-	public void setSize(float size) {
+	public void setLine_Width(float size) {
 		this.size = size;
 	}
 
@@ -48,7 +48,7 @@ public class DrawModel extends Observable {
 			x = GridPosition(x);
 			y = GridPosition(y);
 		}
-		switch(s) {
+		switch (s) {
 
 		case "square":
 			F = new RectangleFigure(x, y, 0, 0, size, currentColor);
@@ -85,11 +85,12 @@ public class DrawModel extends Observable {
 		notifyObservers();
 	}
 
-	public void Gridline() {;
+	public void Gridline() {
+		;
 		if (gridfig.size() > 0) {
 			gridfig.clear();
 		} else {
-			int line =  5000/ Gwidth;
+			int line = 5000 / Gwidth;
 			for (int i = 0; i < line; i++) {
 				int linewidth = i * Gwidth;
 				F = new LineFigure(linewidth, 0, linewidth, 5000, 1.0f, Color.GRAY);
@@ -104,7 +105,7 @@ public class DrawModel extends Observable {
 	}
 
 	public void reshapeFigure(int x1, int y1, int x2, int y2) {
-		
+
 		if (gridfig.size() > 0) {
 			x1 = GridPosition(x1);
 			y1 = GridPosition(y1);
@@ -122,9 +123,9 @@ public class DrawModel extends Observable {
 	}
 
 	private int GridPosition(int p) {
-		double p1 = (double)(p)/10;
+		double p1 = (double) (p) / 10;
 		p1 = Math.round(p1);
-		return (int)(p1*10);
+		return (int) (p1 * 10);
 
 	}
 }
