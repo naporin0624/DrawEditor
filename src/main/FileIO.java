@@ -1,7 +1,9 @@
 package main;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
@@ -23,6 +25,7 @@ public class FileIO extends JPanel{
 	private String s;
 	private String fileName;
 	private File file;
+	private BufferedImage bufferedImage;
 
 	public FileIO(DrawModel model) {
 		this.model = model;
@@ -33,10 +36,27 @@ public class FileIO extends JPanel{
 		open_ex_type.add("gif");
 		open_ex_type.add("dtxt");
 	}
+	
+	public BufferedImage openImage() {
+		setup_extension(fileDialog,open_ex_type);
+		int state = fileDialog.showOpenDialog(this);
+		if (state != JFileChooser.APPROVE_OPTION)
+			return null;
+		file = fileDialog.getSelectedFile();
+
+		fileName = file.getName();
+		try {
+			bufferedImage = ImageIO.read(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return bufferedImage;
+	}
 
 	public void saveImage() {
 		fig = model.getFigure();
-		image = new BufferedImage(500, 500, BufferedImage.TYPE_3BYTE_BGR);
+		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+		image = new BufferedImage((int)d.getWidth(),(int)d.getHeight(),BufferedImage.TYPE_3BYTE_BGR);
 		g2d = image.createGraphics();
 		g2d.setColor(Color.white);
 

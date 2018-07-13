@@ -21,7 +21,7 @@ public class All_Frame_Item extends JMenuBar{
 	public All_Frame_Item(DrawModel model,ViewPanel view) {
 		this.model = model;
 		this.view = view;
-		file = new File_Item(model);
+		file = new File_Item(model, view);
 		color = new Color_Item(model);
 		figure = new Figure_Item(model);
 		line = new Line_width_Item(model);

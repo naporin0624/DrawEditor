@@ -20,12 +20,11 @@ public class DrawFrame extends JFrame{
 		cont = new DrawController(model);
 		view = new ViewPanel(model, cont);
 		All_Menu = new All_Frame_Item(model,view);
-		Panel = new Under_Panel(model,view);
+		Panel = new Under_Panel(model);
 		// 以下描画
 		this.setBackground(Color.black);
 		this.setTitle("Draw Editor");
 		this.setSize(500, 500);
-		this.setResizable(false);
 		setJMenuBar(All_Menu);
 		this.add(Panel, BorderLayout.SOUTH);
 		this.add(view);

@@ -16,8 +16,7 @@ public class Under_Panel extends JPanel implements ActionListener{
 	private ArrayList<JButton> button;
 	private ArrayList<JCheckBox> check;
 	
-	public Under_Panel(DrawModel model,ViewPanel view) {
-		this.view = view;
+	public Under_Panel(DrawModel model) {
 		this.model = model;
 		button = new ArrayList<JButton>();
 		check = new ArrayList<JCheckBox>();
@@ -47,10 +46,10 @@ public class Under_Panel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 			case "Clear":
-				view.AllClear();
+				model.AllClear();
 				break;
 			case "ReDraw":
-				view.removeFigure();
+				model.removeFigure();
 				break;
 			case "Grid":
 				model.Gridline();

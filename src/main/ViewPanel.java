@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -12,6 +13,7 @@ public class ViewPanel extends JPanel implements Observer {
 	protected DrawModel model;
 	private Color backcolor = Color.white;
 	private ArrayList<Figure> fig,gridfig;
+	private BufferedImage img;
 
 	public ViewPanel(DrawModel m, DrawController c) {
 		this.setBackground(backcolor);
@@ -39,18 +41,15 @@ public class ViewPanel extends JPanel implements Observer {
 			f.draw(g);
 		}
 	}
-
-	public void AllClear() {
-		fig.clear();
-		repaint();
+	/*
+	public void paint(Graphics g) {
+		g.drawImage(img, 0, 0, null);
 	}
-
-	public void removeFigure() {
-		if (fig.size() < 1)
-			return;
-		fig.remove(fig.size() - 1);
-		repaint();
+	
+	public void setimg(BufferedImage img) {
+		this.img = img;
 	}
+*/
 
 	public void update(Observable o, Object arg) {
 		repaint();

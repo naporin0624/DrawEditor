@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -87,12 +88,12 @@ public class DrawModel extends Observable {
 		if (gridfig.size() > 0) {
 			gridfig.clear();
 		} else {
-			int line = 500 / 10;
+			int line = 3000 / 10;
 			for (int i = 0; i < line; i++) {
 				int linewidth = i * 10;
-				F = new Line(linewidth, 0, linewidth, 500, 1.0f, Color.GRAY);
+				F = new Line(linewidth, 0, linewidth, 3000, 1.0f, Color.GRAY);
 				gridfig.add(F);
-				F = new Line(0, linewidth, 500, linewidth, 1.0f, Color.GRAY);
+				F = new Line(0, linewidth, 3000, linewidth, 1.0f, Color.GRAY);
 				gridfig.add(F);
 			}
 		}
@@ -116,6 +117,20 @@ public class DrawModel extends Observable {
 			setChanged();
 			notifyObservers();
 		}
+	}
+	
+	public void AllClear() {
+		fig.clear();
+		setChanged();
+		notifyObservers();
+	}
+
+	public void removeFigure() {
+		if (fig.size() < 1)
+			return;
+		fig.remove(fig.size() - 1);
+		setChanged();
+		notifyObservers();
 	}
 
 	private int GridPosition(int p) {
