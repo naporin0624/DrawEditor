@@ -24,7 +24,7 @@ public class FileIO extends JPanel {
 	
 	public void saveImage() {
 		fig = model.getFigure();
-		image = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_3BYTE_BGR);
+		image = new BufferedImage(500, 500, BufferedImage.TYPE_3BYTE_BGR);
 		g2d = (Graphics2D) image.getGraphics();
 		g2d.setColor(Color.white);
 		g2d.fillRect(0, 0, image.getWidth(), image.getHeight());
