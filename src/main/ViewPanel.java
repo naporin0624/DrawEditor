@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class ViewPanel extends JPanel implements Observer {
 	private Color backcolor = Color.white;
 	private ArrayList<Figure> fig,gridfig;
 	private BufferedImage img;
+	Dimension window_size;
 
 	public ViewPanel(DrawModel m, DrawController c) {
 		this.setBackground(backcolor);
@@ -28,8 +30,13 @@ public class ViewPanel extends JPanel implements Observer {
 		this.setBackground(backcolor);
 	}
 
+	public Dimension get_window_size() {
+		return window_size;
+	}
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		window_size = getSize();
 		fig = model.getFigure();
 		gridfig = model.getGrid();
 		for (int i = 0; i < gridfig.size(); i++) {
@@ -41,16 +48,6 @@ public class ViewPanel extends JPanel implements Observer {
 			f.draw(g);
 		}
 	}
-	/*
-	public void paint(Graphics g) {
-		g.drawImage(img, 0, 0, null);
-	}
-	
-	public void setimg(BufferedImage img) {
-		this.img = img;
-	}
-*/
-
 	public void update(Observable o, Object arg) {
 		repaint();
 	}

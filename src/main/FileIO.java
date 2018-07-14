@@ -3,7 +3,6 @@ package main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FileIO extends JPanel{
 	private ArrayList<Figure> fig;
@@ -21,24 +19,19 @@ public class FileIO extends JPanel{
 	private Graphics2D g2d;
 	private JFileChooser fileDialog;
 	private BufferedImage image;
-	private ArrayList<String> open_ex_type;
 	private String s;
 	private String fileName;
 	private File file;
 	private BufferedImage bufferedImage;
+	protected ViewPanel view;
 
-	public FileIO(DrawModel model) {
+	public FileIO(DrawModel model,ViewPanel view) {
 		this.model = model;
+		this.view = view;
 		fileDialog = new JFileChooser();
-		open_ex_type = new ArrayList<String>();
-		open_ex_type.add("png");
-		open_ex_type.add("jpg");
-		open_ex_type.add("gif");
-		open_ex_type.add("dtxt");
 	}
-	
+
 	public BufferedImage openImage() {
-		setup_extension(fileDialog,open_ex_type);
 		int state = fileDialog.showOpenDialog(this);
 		if (state != JFileChooser.APPROVE_OPTION)
 			return null;
@@ -55,8 +48,8 @@ public class FileIO extends JPanel{
 
 	public void saveImage() {
 		fig = model.getFigure();
-		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-		image = new BufferedImage((int)d.getWidth(),(int)d.getHeight(),BufferedImage.TYPE_3BYTE_BGR);
+		Dimension d = view.get_window_size();
+		image = new BufferedImage(d.width,d.height,BufferedImage.TYPE_3BYTE_BGR);
 		g2d = image.createGraphics();
 		g2d.setColor(Color.white);
 
@@ -75,17 +68,13 @@ public class FileIO extends JPanel{
 
 		fileName = file.getName();
 
-		try {
-			s = fileName.substring(fileName.length() - 4, fileName.length());
-		} catch (Exception IndexOutOfBoundsException) {
-			fileName += ".png";
-			s = "png";
-		}
+		
 
-		file = new File(file.getParent(), fileName);
-
+		if (!fileName.endsWith(".png"))
+			file = new File(file.getParent(), fileName + ".png");
+		
 		try {
-			ImageIO.write(image, s, file);
+			ImageIO.write(image, "png", file);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -116,13 +105,6 @@ public class FileIO extends JPanel{
 			System.out.println(s);
 		} catch (IOException e) {
 			System.out.println(e);
-		}
-	}
-
-	private void setup_extension(JFileChooser file, ArrayList<String> ex_type) {
-		for (int i = 0; i < ex_type.size(); i++) {
-			String s = "*." + ex_type.get(i);
-			file.setFileFilter(new FileNameExtensionFilter(s, ex_type.get(i)));
 		}
 	}
 }

@@ -2,7 +2,6 @@ package main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.JMenuBar;
@@ -15,11 +14,10 @@ public class File_Item extends JMenuBar implements ActionListener {
 	protected FileIO file;
 	protected ViewPanel view;
 	private ArrayList<JMenuItem> menu_item;
-	private BufferedImage image;
 
 	public File_Item(DrawModel model,ViewPanel view) {
 		this.view = view;
-		file = new FileIO(model);
+		file = new FileIO(model,view);
 		dialog = new Dialog();
 		menu_item = new ArrayList<JMenuItem>();
 		menu_item.add(new JMenuItem("openImage"));
