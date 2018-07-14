@@ -20,6 +20,7 @@ public class File_Item extends JMenuBar implements ActionListener {
 		file = new FileIO(model,view);
 		dialog = new Dialog();
 		menu_item = new ArrayList<JMenuItem>();
+		//メニューの内容を記述
 		menu_item.add(new JMenuItem("openImage"));
 		menu_item.add(new JMenuItem("openData"));
 		menu_item.add(new JMenuItem("saveImage"));

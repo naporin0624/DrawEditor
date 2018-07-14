@@ -29,13 +29,16 @@ public class All_Frame_Item extends JMenuBar{
 		
 		Menu = new ArrayList<JMenu>();
 		
+		//作りたいメニューリストに格納
 		Menu.add(new JMenu("File"));
 		Menu.add(new JMenu("Color"));
 		Menu.add(new JMenu("Figure"));
 		Menu.add(new JMenu("Line_width"));
 		Menu.add(new JMenu("BGColor"));
+		//メニューバーをドローエディタに追加
 		Add_Bar(Menu);
 		
+		//各メニューの内容をリストに格納された順番に記述
 		Add_Item(file.Add_Item(),0);
 		Add_Item(color.Add_Item(),1);
 		Add_Item(figure.Add_Item(),2);

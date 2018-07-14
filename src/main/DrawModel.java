@@ -99,12 +99,16 @@ public class DrawModel extends Observable {
 	}
 
 	public void AllClear() {
+		//図形を保存しているfigリストのデータをすべて削除
+		//リストの操作が終了したらViewPanelに通知して再描画を行う
 		fig.clear();
 		setChanged();
 		notifyObservers();
 	}
 
 	public void removeFigure() {
+		//図形を保存しているfigリストのデータが1より多いときは1つ消す
+		//リストの操作が終了したらViewPanelに通知して再描画を行う
 		if (fig.size() < 1)
 			return;
 		fig.remove(fig.size() - 1);
@@ -113,9 +117,11 @@ public class DrawModel extends Observable {
 	}
 
 	public void Gridline() {
+		//Gridlineメソッドが呼び出され、線が描画してあれば削除
 		if (gridfig.size() > 0) {
 			gridfig.clear();
 		} else {
+			//グリッド線が描画されていないときはグリッド線を描画
 			int line = 3000 / 10;
 			for (int i = 0; i < line; i++) {
 				int linewidth = i * 10;
@@ -125,11 +131,13 @@ public class DrawModel extends Observable {
 				gridfig.add(F);
 			}
 		}
+		//グリッド線の設定が終わればViewPanelに通知してグリッド線の有無を適当する
 		setChanged();
 		notifyObservers();
 	}
 
 	private int GridPosition(int p) {
+		//pに与えられた一の位を四捨五入する
 		double p1 = (double) (p) / 10;
 		p1 = Math.round(p1);
 		return (int) (p1 * 10);

@@ -9,7 +9,7 @@ import javax.swing.JMenuItem;
 
 public class Figure_Item extends JMenuBar implements ActionListener{
 	private static final long serialVersionUID = 1L;
-	
+
 	private ArrayList<JMenuItem> menu_item;
 	private String R= "Rectangle", FR = "FillRectangle",L = "Line", C = "Circle", FC="FillCircle", T = "Triangle", FT = "FillTriangle";
 	protected DrawModel model;
@@ -24,7 +24,7 @@ public class Figure_Item extends JMenuBar implements ActionListener{
 		menu_item.add(new JMenuItem(T));
 		menu_item.add(new JMenuItem(FT));
 	}
-		
+
 	public ArrayList<JMenuItem> Add_Item() {
 		for(int i=0;i<menu_item.size();i++) menu_item.get(i).addActionListener(this);
 		return menu_item;
@@ -59,5 +59,5 @@ public class Figure_Item extends JMenuBar implements ActionListener{
 				break;
 		}
 	}
-		
+
 }
