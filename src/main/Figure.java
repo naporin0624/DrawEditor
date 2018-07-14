@@ -33,19 +33,19 @@ public class Figure {
 		return FigureSize;
 	}
 
-	public void reshape(int x1, int y1, int x2, int y2) {
-		int newx = Math.min(x1, x2);
-		int newy = Math.min(y1, y2);
-		int neww = Math.abs(x1 - x2);
-		int newh = Math.abs(y1 - y2);
+	public void reshape(int x1, int y1, int x2, int y2, String fig_type) {
+		if (fig_type == "Line" || fig_type == "Triangle" || fig_type == "FillTriangle") {
+			setLocation(x1, y1);
+			setSize(x2, y2);
+		} else {
+			int newx = Math.min(x1, x2);
+			int newy = Math.min(y1, y2);
+			int neww = Math.abs(x1 - x2);
+			int newh = Math.abs(y1 - y2);
 
-		setLocation(newx, newy);
-		setSize(neww, newh);
-	}
-
-	public void reshapeline(int x1, int y1, int x2, int y2) {
-		setLocation(x1, y1);
-		setSize(x2, y2);
+			setLocation(newx, newy);
+			setSize(neww, newh);
+		}
 	}
 
 	public void draw(Graphics g) {

@@ -1,16 +1,15 @@
 package main;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Observable;
 
 public class DrawModel extends Observable {
-	protected ArrayList<Figure> fig,gridfig;
+	protected ArrayList<Figure> fig, gridfig;
 	protected Figure drawingFigure, F;
 	protected Color currentColor = Color.red;
 	private String s = "Rectangle";
-	private float size = 1.0f;
+	private float Line_Width = 1.0f;
 
 	public DrawModel() {
 		fig = new ArrayList<Figure>();
@@ -38,8 +37,8 @@ public class DrawModel extends Observable {
 		return fig.get(idx);
 	}
 
-	public void setLine_Width(float size) {
-		this.size = size;
+	public void setLine_Width(float Width) {
+		Line_Width = Width;
 	}
 
 	public void createFigure(int x, int y) {
@@ -49,37 +48,66 @@ public class DrawModel extends Observable {
 		}
 
 		switch (s) {
-			case "Rectangle":
-				F = new Rectangle(x, y, 0, 0, size, currentColor);
-				break;
+		case "Rectangle":
+			F = new Rectangle(x, y, 0, 0, Line_Width, currentColor);
+			break;
 
-			case "FillRectangle":
-				F = new FillRectangle(x, y, 0, 0, size, currentColor);
-				break;
+		case "FillRectangle":
+			F = new FillRectangle(x, y, 0, 0, Line_Width, currentColor);
+			break;
 
-			case "Circle":
-				F = new Circle(x, y, 0, 0, size, currentColor);
-				break;
+		case "Circle":
+			F = new Circle(x, y, 0, 0, Line_Width, currentColor);
+			break;
 
-			case "FillCircle":
-				F = new FillCircle(x, y, 0, 0, size, currentColor);
-				break;
+		case "FillCircle":
+			F = new FillCircle(x, y, 0, 0, Line_Width, currentColor);
+			break;
 
-			case "Line":
-				F = new Line(x, y, x, y, size, currentColor);
-				break;
+		case "Line":
+			F = new Line(x, y, x, y, Line_Width, currentColor);
+			break;
 
-			case "Triangle":
-				F = new Triangle(x, y, x, y, size, currentColor);
-				break;
+		case "Triangle":
+			F = new Triangle(x, y, x, y, Line_Width, currentColor);
+			break;
 
-			case "FillTriangle":
-				F = new FillTriangle(x, y, x, y, size, currentColor);
-				break;
+		case "FillTriangle":
+			F = new FillTriangle(x, y, x, y, Line_Width, currentColor);
+			break;
 		}
-		
+
 		fig.add(F);
 		drawingFigure = F;
+		setChanged();
+		notifyObservers();
+	}
+
+	public void reshapeFigure(int x1, int y1, int x2, int y2) {
+
+		if (gridfig.size() > 0) {
+			x1 = GridPosition(x1);
+			y1 = GridPosition(y1);
+			x2 = GridPosition(x2);
+			y2 = GridPosition(y2);
+		}
+		if (drawingFigure != null) {
+			drawingFigure.reshape(x1, y1, x2, y2, s);
+			setChanged();
+			notifyObservers();
+		}
+	}
+
+	public void AllClear() {
+		fig.clear();
+		setChanged();
+		notifyObservers();
+	}
+
+	public void removeFigure() {
+		if (fig.size() < 1)
+			return;
+		fig.remove(fig.size() - 1);
 		setChanged();
 		notifyObservers();
 	}
@@ -97,38 +125,6 @@ public class DrawModel extends Observable {
 				gridfig.add(F);
 			}
 		}
-		setChanged();
-		notifyObservers();
-	}
-
-	public void reshapeFigure(int x1, int y1, int x2, int y2) {
-
-		if (gridfig.size() > 0) {
-			x1 = GridPosition(x1);
-			y1 = GridPosition(y1);
-			x2 = GridPosition(x2);
-			y2 = GridPosition(y2);
-		}
-		if (drawingFigure != null) {
-			if (s == "Line" || s == "Triangle" || s == "FillTriangle")
-				drawingFigure.reshapeline(x1, y1, x2, y2);
-			else
-				drawingFigure.reshape(x1, y1, x2, y2);
-			setChanged();
-			notifyObservers();
-		}
-	}
-	
-	public void AllClear() {
-		fig.clear();
-		setChanged();
-		notifyObservers();
-	}
-
-	public void removeFigure() {
-		if (fig.size() < 1)
-			return;
-		fig.remove(fig.size() - 1);
 		setChanged();
 		notifyObservers();
 	}

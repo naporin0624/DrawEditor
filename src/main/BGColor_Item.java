@@ -13,13 +13,16 @@ public class BGColor_Item extends JMenuBar implements ActionListener {
 	
 	protected Dialog dialog;
 	protected ViewPanel view;
+	protected ColorPanel CPanel;
 	private ArrayList<JMenuItem> menu_item;
 	public BGColor_Item(ViewPanel view) {
 		this.view = view;
 		dialog = new Dialog();
+		CPanel = new ColorPanel();
 		menu_item = new ArrayList<JMenuItem>();
 		menu_item.add(new JMenuItem("white"));
 		menu_item.add(new JMenuItem("black"));
+		menu_item.add(new JMenuItem("Ohter Color"));
 	}
 	
 	public ArrayList<JMenuItem> Add_Item() {
@@ -34,6 +37,10 @@ public class BGColor_Item extends JMenuBar implements ActionListener {
 				break;
 			case "black":
 				view.BackPanelColor(Color.black);
+				break;
+			case "Ohter Color":
+				Color c = CPanel.ColorPanelwindow();
+				view.BackPanelColor(c);
 				break;
 			default:
 				dialog.message("想定外の操作", "waring");
