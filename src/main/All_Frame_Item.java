@@ -47,10 +47,12 @@ public class All_Frame_Item extends JMenuBar{
 		
 	}
 	
+	//メニューバーに追加
 	public void Add_Bar(ArrayList<JMenu> menu) {
 		for(int i=0;i<menu.size();i++) this.add(menu.get(i));
 	}
 	
+	//メニューの内容を追加
 	public void Add_Item(ArrayList<JMenuItem> item,int num) {
 		for(int i=0;i<item.size();i++) Menu.get(num).add(item.get(i));
 	}

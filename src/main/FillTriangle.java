@@ -12,6 +12,7 @@ public class FillTriangle extends Figure {
 	}
 
 	public void draw(Graphics g) {
+		//塗りつぶしの三角形を描くメソッド
 		Graphics2D g2d = (Graphics2D) g;
 		g.setColor(color);
 		BasicStroke superwideStroke = new BasicStroke(size);

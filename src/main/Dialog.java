@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 public class Dialog extends JFrame {
 	private static final long serialVersionUID = 1L;
 
+	//入力ポップアップを出し、入力した値を文字列で返す
 	public String input(String message) {
 		String value = JOptionPane.showInputDialog(this, message);
 		if (value == null) {
@@ -15,6 +16,7 @@ public class Dialog extends JFrame {
 		}
 	}
 	
+	//メッセージポップアップを表示
 	public void message(String content,String type) {
 		int message_type;
 		String s;

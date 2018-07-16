@@ -28,6 +28,7 @@ public class File_Item extends JMenuBar implements ActionListener {
 		menu_item.add(new JMenuItem("close"));
 	}
 
+	//メニュー内容を追加
 	public ArrayList<JMenuItem> Add_Item() {
 		for (int i = 0; i < menu_item.size(); i++)
 			menu_item.get(i).addActionListener(this);
@@ -35,6 +36,7 @@ public class File_Item extends JMenuBar implements ActionListener {
 	}
 
 	@Override
+	//メニュー動作
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		/*case "openImage":

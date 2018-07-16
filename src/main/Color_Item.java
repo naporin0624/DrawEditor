@@ -17,6 +17,7 @@ public class Color_Item extends JMenuBar implements ActionListener{
 		this.model = model;
 		Cpanel = new ColorPanel();
 		menu_item = new ArrayList<JMenuItem>();
+		//メニュー内容
 		menu_item.add(new JMenuItem("Red"));
 		menu_item.add(new JMenuItem("Blue"));
 		menu_item.add(new JMenuItem("Yellow"));
@@ -24,6 +25,7 @@ public class Color_Item extends JMenuBar implements ActionListener{
 		menu_item.add(new JMenuItem("Other Color"));
 	}
 	
+	//メニュー内容を追加
 	public ArrayList<JMenuItem> Add_Item(){
 		for(int i=0;i<menu_item.size();i++) menu_item.get(i).addActionListener(this);
 		return menu_item;
@@ -31,6 +33,7 @@ public class Color_Item extends JMenuBar implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		//メニューの内容動作
 		switch(e.getActionCommand()) {
 			case "Red":
 				model.setColor(Color.red);

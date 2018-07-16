@@ -32,6 +32,9 @@ public class FileIO extends JPanel{
 	}
 
 	public BufferedImage openImage() {
+		/*FileChooserを使って目的のファイルをオープンする
+		*bufferedImageに画像を描写してそれを返り値とする
+		*/
 		int state = fileDialog.showOpenDialog(this);
 		if (state != JFileChooser.APPROVE_OPTION)
 			return null;
@@ -47,6 +50,10 @@ public class FileIO extends JPanel{
 	}
 
 	public void saveImage() {
+		/*
+		 * DrawModelクラスン格納されている図形データを取得してbufferedImageに再描画する
+		 * 描画が完了したらpng形式で画像を保存する
+		 */
 		fig = model.getFigure();
 		Dimension d = view.get_window_size();
 		image = new BufferedImage(d.width,d.height,BufferedImage.TYPE_3BYTE_BGR);
@@ -81,6 +88,10 @@ public class FileIO extends JPanel{
 	}
 
 	public void saveData() {
+		/*
+		 * DrawModelクラスン格納されている図形データを取得しString型に変換する
+		 * getFigureメソッドで得られた図形データを文字列にしてテキスト形式で保存する
+		 */
 		s = "";
 		fig = model.getFigure();
 		for (int i = 0; i < fig.size(); i++) {
@@ -102,7 +113,6 @@ public class FileIO extends JPanel{
 			FileWriter filewriter = new FileWriter(file);
 			filewriter.write(s);
 			filewriter.close();
-			System.out.println(s);
 		} catch (IOException e) {
 			System.out.println(e);
 		}

@@ -20,6 +20,8 @@ public class BGColor_Item extends JMenuBar implements ActionListener {
 		dialog = new Dialog();
 		CPanel = new ColorPanel();
 		menu_item = new ArrayList<JMenuItem>();
+		
+		//メニュー内容
 		menu_item.add(new JMenuItem("white"));
 		menu_item.add(new JMenuItem("black"));
 		menu_item.add(new JMenuItem("Ohter Color"));
@@ -31,6 +33,7 @@ public class BGColor_Item extends JMenuBar implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		//メニュー内容をクリックしたときの動作
 		switch(e.getActionCommand()) {
 			case "white":
 				view.BackPanelColor(Color.white);

@@ -12,6 +12,7 @@ public class Line extends Figure {
 	}
 
 	public void draw(Graphics g) {
+		//直線を描くメソッド
 		Graphics2D g2d =(Graphics2D)g;
 		g2d.setColor(color);
 		BasicStroke superwideStroke = new BasicStroke(size);

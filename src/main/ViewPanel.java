@@ -25,15 +25,18 @@ public class ViewPanel extends JPanel implements Observer {
 		model.addObserver(this);
 	}
 
+	//背景色の設定
 	public void BackPanelColor(Color c) {
 		backcolor = c;
 		this.setBackground(backcolor);
 	}
 
+	//ウインドウサイズを取得
 	public Dimension get_window_size() {
 		return window_size;
 	}
 
+	//図形データをユーザーに見えるように描写
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		window_size = getSize();
@@ -48,6 +51,8 @@ public class ViewPanel extends JPanel implements Observer {
 			f.draw(g);
 		}
 	}
+	
+	//ViewPanelクラスが呼び出されるたびに再描画
 	public void update(Observable o, Object arg) {
 		repaint();
 	}

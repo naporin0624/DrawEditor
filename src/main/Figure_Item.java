@@ -16,6 +16,8 @@ public class Figure_Item extends JMenuBar implements ActionListener{
 	public Figure_Item(DrawModel model) {
 		this.model = model;
 		menu_item = new ArrayList<JMenuItem>();
+		
+		//メニュー内容を追加
 		menu_item.add(new JMenuItem(R));
 		menu_item.add(new JMenuItem(FR));
 		menu_item.add(new JMenuItem(L));
@@ -25,15 +27,18 @@ public class Figure_Item extends JMenuBar implements ActionListener{
 		menu_item.add(new JMenuItem(FT));
 	}
 
+	//メニューアイテムを追加
 	public ArrayList<JMenuItem> Add_Item() {
 		for(int i=0;i<menu_item.size();i++) menu_item.get(i).addActionListener(this);
 		return menu_item;
 	}
 
+	//クリック時の動作を設定
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 			case "Rectangle":
+				//DrawModelクラスのsetShapeにRectangleを引数にして値をセットする
 				model.setShape(R);
 				break;
 			case "FillRectangle":

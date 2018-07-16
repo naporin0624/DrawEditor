@@ -34,6 +34,10 @@ public class Figure {
 	}
 
 	public void reshape(int x1, int y1, int x2, int y2, String fig_type) {
+		/*図形に渡すために座標を変換するメソッド
+		 * 選ばれている図形タイプによって返す値を変える
+		 */
+		
 		if (fig_type == "Line" || fig_type == "Triangle" || fig_type == "FillTriangle") {
 			setLocation(x1, y1);
 			setSize(x2, y2);

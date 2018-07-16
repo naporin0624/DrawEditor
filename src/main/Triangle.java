@@ -13,6 +13,7 @@ public class Triangle extends Figure {
 	}
 
 	public void draw(Graphics g) {
+		//三角形を描くメソッド
 		Graphics2D g2d = (Graphics2D)g;
 		g.setColor(color);
 		BasicStroke superwideStroke = new BasicStroke(size);

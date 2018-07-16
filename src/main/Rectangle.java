@@ -11,6 +11,7 @@ public class Rectangle extends Figure {
 		super(x, y, w, h, size, c);
 	}
 	public void draw(Graphics g) {
+		//長方形を描くメソッド
 		Graphics2D g2d =(Graphics2D)g;
 		g2d.setColor(color);
 		BasicStroke superwideStroke = new BasicStroke(size);

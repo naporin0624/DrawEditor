@@ -12,6 +12,7 @@ public class FillCircle extends Figure {
 	}
 
 	public void draw(Graphics g) {
+		//塗りつぶしの円を描くメソッド
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setColor(color);
 		BasicStroke supersideStroke = new BasicStroke(size);
